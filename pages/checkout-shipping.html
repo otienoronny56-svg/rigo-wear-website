@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout: Shipping | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="checkout-details-section">
+            <div class="checkout-container">
+                
+                <div class="checkout-forms">
+                    <h1>Shipping & Contact Details</h1>
+                    
+                    <div class="checkout-progress active-step-2">
+                        <p>STEP 1: Cart Summary &rarr; <strong>STEP 2: Shipping/Billing</strong> &rarr; STEP 3: Payment</p>
+                    </div>
+
+                    <form id="shipping-form" class="form-block">
+                        <h2>1. Shipping Address</h2>
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="full-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address1">Address Line 1</label>
+                            <input type="text" id="address1" name="address1" required>
+                        </div>
+                        <div class="form-group-half">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Zip/Postal Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country...</option>
+                                <option value="KE">Kenya</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <form id="billing-form" class="form-block">
+                        <h2>2. Billing Address</h2>
+                        <div class="form-group">
+                            <input type="checkbox" id="same-as-shipping" name="same-as-shipping" checked>
+                            <label for="same-as-shipping" class="inline-label">Same as shipping address</label>
+                        </div>
+                        
+                        <div class="checkout-actions">
+                            <a href="cart.html" class="secondary-button back-to-cart">&larr; Back to Cart</a>
+                            <button type="button" class="cta-button" id="confirm-whatsapp-btn" onclick="confirmOrderViaWhatsApp()">Confirm Order via WhatsApp</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="order-summary-box">
+                    <h2>Order Summary</h2>
+                    <div class="summary-line">
+                        <span>Items Subtotal:</span>
+                        <span class="summary-amount">$2,149.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Estimated Shipping:</span>
+                        <span class="summary-amount">FREE</span>
+                    </div>
+                    <div class="summary-line tax-line">
+                        <span>Taxes (Estimated):</span>
+                        <span class="summary-amount">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-line grand-total">
+                        <span>Grand Total:</span>
+                        <span class="summary-amount">$2,149.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: #ccc;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: #ccc;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop No. 05, Workshop Road, Nairobi CBD</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="font-size: 1.5em; color: #1877F2;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="font-size: 1.5em; color: #E4405F;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="font-size: 1.5em; color: #FFF;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="font-size: 1.5em; color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Load cart and shipping details
+        function loadCheckoutSummary() {
+            const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+            });
+            
+            const summaryAmount = document.querySelector('.summary-amount');
+            const grandTotal = document.querySelectorAll('.summary-amount')[3];
+            
+            if (summaryAmount) summaryAmount.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
+            if (grandTotal) grandTotal.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
+        }
+        
+        function confirmOrderViaWhatsApp() {
+            // Get shipping details from form
+            const fullName = document.getElementById('full-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address1 = document.getElementById('address1').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const zip = document.getElementById('zip').value.trim();
+            const country = document.getElementById('country').value.trim();
+            
+            // Validate all fields are filled
+            if (!fullName || !email || !phone || !address1 || !city || !zip || !country) {
+                alert('Please fill in all shipping details before confirming order.');
+                return;
+            }
+            
+            // Get cart items
+            const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            
+            // Build order summary message
+            let message = `*NEW ORDER FROM RIGO WEAR*\n\n`;
+            message += `*CUSTOMER DETAILS:*\n`;
+            message += `Name: ${fullName}\n`;
+            message += `Email: ${email}\n`;
+            message += `Phone: ${phone}\n\n`;
+            message += `*SHIPPING ADDRESS:*\n`;
+            message += `${address1}\n${city}, ${zip}\n${country}\n\n`;
+            message += `*ORDER ITEMS:*\n`;
+            
+            let totalPrice = 0;
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.qty;
+                totalPrice += itemTotal;
+                message += `\n${idx + 1}. ${item.name}\n`;
+                message += `   Quantity: ${item.qty}\n`;
+                message += `   Fit: ${item.fit}\n`;
+                message += `   Fabric: ${item.fabric}\n`;
+                message += `   Unit Price: KES ${Math.round(item.price).toLocaleString()}\n`;
+                message += `   Total: KES ${Math.round(itemTotal).toLocaleString()}`;
+            });
+            
+            message += `\n\n*ORDER TOTAL: KES ${Math.round(totalPrice).toLocaleString()}*\n\n`;
+            message += `Please confirm this order and we will proceed with payment collection.`;
+            
+            // Encode message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/254115509921?text=${encodedMessage}`;
+            
+            // Store order in session before redirecting
+            sessionStorage.setItem('current_order', JSON.stringify({
+                customer: { fullName, email, phone, address1, city, zip, country },
+                cart: cart,
+                total: totalPrice
+            }));
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+        }
+        
+        // Load summary on page load
+        document.addEventListener('DOMContentLoaded', loadCheckoutSummary);
+    </script>

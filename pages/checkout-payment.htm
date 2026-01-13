@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout: Payment | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="checkout-payment-section">
+            <div class="checkout-container">
+                
+                <div class="checkout-forms">
+                    <h1>Payment & Final Review</h1>
+                    
+                    <div class="checkout-progress active-step-3">
+                        <p>STEP 1: Cart Summary &rarr; STEP 2: Shipping/Billing &rarr; <strong>STEP 3: Payment</strong></p>
+                    </div>
+
+                    <form id="payment-form" class="form-block">
+                        <h2>3. Select Payment Method</h2>
+                        
+                        <div class="payment-options">
+                            
+                            <div class="payment-option selected">
+                                <input type="radio" id="credit-card" name="payment-method" value="card" checked>
+                                <label for="credit-card">Credit or Debit Card</label>
+                                <div class="card-details-fields">
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX">
+                                    </div>
+                                    <div class="form-group-half">
+                                        <div class="form-group">
+                                            <label for="expiry">Expiry (MM/YY)</label>
+                                            <input type="text" id="expiry" placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" placeholder="CVV">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-option">
+                                <input type="radio" id="paypal" name="payment-method" value="paypal">
+                                <label for="paypal">PayPal</label>
+                                <div class="payment-logo">[PayPal Logo Placeholder]</div>
+                            </div>
+                            
+                            <div class="payment-option">
+                                <input type="radio" id="mpesa" name="payment-method" value="mpesa">
+                                <label for="mpesa">M-Pesa / Mobile Payment</label>
+                                <div class="payment-logo">[M-Pesa Logo Placeholder]</div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-group agreement-checkbox">
+                            <input type="checkbox" id="agree" required>
+                            <label for="agree" class="inline-label">I agree to the <a href="#" target="_blank">Terms & Conditions</a></label>
+                        </div>
+                        
+                        <div class="checkout-actions">
+                            <a href="checkout-shipping.html" class="secondary-button back-to-shipping">&larr; Back to Details</a>
+                            <button type="submit" class="cta-button place-order-btn">Place Order ($2,149.00)</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="order-summary-box">
+                    <h2>Order Summary</h2>
+                    <div class="summary-review-block">
+                        <h4 class="gold-text">Ship To:</h4>
+                        <p>John Doe</p>
+                        <p>123 Bespoke Street, Nairobi</p>
+                        <p>Kenya</p>
+                        <a href="checkout-shipping.html" class="edit-link">Edit Details</a>
+                    </div>
+                    
+                    <div class="summary-line">
+                        <span>Items Subtotal:</span>
+                        <span class="summary-amount">$2,149.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Estimated Shipping:</span>
+                        <span class="summary-amount">FREE</span>
+                    </div>
+                    <div class="summary-line tax-line">
+                        <span>Taxes (Estimated):</span>
+                        <span class="summary-amount">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-line grand-total">
+                        <span>Grand Total:</span>
+                        <span class="summary-amount">$2,149.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: #ccc;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: #ccc;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop No. 05, Workshop Road, Nairobi CBD</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="font-size: 1.5em; color: #1877F2;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="font-size: 1.5em; color: #E4405F;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="font-size: 1.5em; color: #FFF;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="font-size: 1.5em; color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Show WhatsApp confirmation info
+        function loadPaymentPage() {
+            const order = JSON.parse(sessionStorage.getItem('current_order'));
+            if (order) {
+                // Display order confirmation
+                const summaryBox = document.querySelector('.order-summary-box');
+                if (summaryBox) {
+                    const customerInfo = `
+                        <div style="background: #0d0d0d; border: 1px solid #FFD700; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+                            <h3 style="color: #FFD700; margin: 0 0 10px 0;">✓ Order Sent to WhatsApp</h3>
+                            <p style="color: #ccc; margin: 5px 0;"><strong>Customer:</strong> ${order.customer.fullName}</p>
+                            <p style="color: #ccc; margin: 5px 0;"><strong>Phone:</strong> ${order.customer.phone}</p>
+                            <p style=\"color: #ccc; margin: 5px 0;\"><strong>Total Amount:</strong> <span style=\"color: #FFD700; font-weight: bold;\">KES ${Math.round(order.total).toLocaleString()}</span></p>
+                            <p style="color: #888; margin-top: 10px; font-size: 0.9em;">RIGO WEAR team has received your order confirmation. Awaiting your WhatsApp response to finalize payment.</p>
+                        </div>
+                    `;
+                    summaryBox.insertAdjacentHTML('afterbegin', customerInfo);
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadPaymentPage);
+    </script>

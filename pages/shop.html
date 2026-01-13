@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | RIGO WEAR - Custom Tailoring</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="menu-toggle" id="mobile-filter-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Filter Menu (Hidden by default, shown on small screens) -->
+    <div id="mobile-filter-menu" class="mobile-filter-menu">
+        <h2>Filter By</h2>
+        <div class="filter-group">
+            <h3>Category</h3>
+            <ul id="category-filter-list">
+                <li><a href="#" onclick="filterByCategory('all'); return false;">All Collections</a></li>
+                <li><a href="#" onclick="filterByCategory('Men'); return false;">Men's Suits <span id="count-men">(0)</span></a></li>
+                <li><a href="#" onclick="filterByCategory('Women'); return false;">Women's Suits <span id="count-women">(0)</span></a></li>
+                <li><a href="#" onclick="filterByCategory('Children'); return false;">Children's Wear <span id="count-children">(0)</span></a></li>
+                <li><a href="#" onclick="filterByCategory('Ankaras'); return false;">Ankaras & African <span id="count-ankaras">(0)</span></a></li>
+                <li><a href="#" onclick="filterByCategory('Senator'); return false;">Senator Suits <span id="count-senator">(0)</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <section id="shop-hero">
+            <h1>The RIGO WEAR Collection</h1>
+        </section>
+
+        <section id="product-listing">
+            <div class="container shop-layout">
+                
+                <aside id="shop-sidebar" class="desktop-sidebar">
+                    <h2>Filter By</h2>
+                    <div class="filter-group">
+                        <h3>Category</h3>
+                        <ul id="category-filter-list-desktop">
+                            <li><a href="#" onclick="filterByCategory('all'); return false;">All Collections</a></li>
+                            <li><a href="#" onclick="filterByCategory('Men'); return false;">Men's Suits <span id="count-men-desktop">(0)</span></a></li>
+                            <li><a href="#" onclick="filterByCategory('Women'); return false;">Women's Suits <span id="count-women-desktop">(0)</span></a></li>
+                            <li><a href="#" onclick="filterByCategory('Children'); return false;">Children's Wear <span id="count-children-desktop">(0)</span></a></li>
+                            <li><a href="#" onclick="filterByCategory('Ankaras'); return false;">Ankaras & African <span id="count-ankaras-desktop">(0)</span></a></li>
+                            <li><a href="#" onclick="filterByCategory('Senator'); return false;">Senator Suits <span id="count-senator-desktop">(0)</span></a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="search-and-grid">
+                    <div class="filter-actions">
+                        <div class="search-box">
+                            <input type="text" id="shop-search" placeholder="Search for Navy, Silk, etc..." onkeyup="handleSearch()">
+                        </div>
+                        <div class="sort-box">
+                            <select id="sort-products" onchange="handleSort()">
+                                <option value="newest">Newest Arrivals</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Alphabetical (A-Z)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="product-grid" class="shop-grid">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: inherit; text-decoration: none;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: inherit; text-decoration: none;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop 05<br>Workshop Road, Nairobi CBD</p>
+                <div class="social-icons" style="margin-top: 15px; font-size: 1.5em;">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2; margin-right: 15px;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #E4405F; margin-right: 15px;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="color: #FFF; margin-right: 15px;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. Luxury Design.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

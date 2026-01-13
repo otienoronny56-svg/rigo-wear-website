@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="cart-section">
+        <div class="cart-container">
+            <div class="cart-items-list">
+                <h1>Your Selection</h1>
+                <div id="dynamic-cart-items">
+                    </div>
+            </div>
+            <div class="order-summary-box">
+                <h2>Summary</h2>
+                <div class="summary-line"><span>Total:</span> <span class="summary-amount">$0.00</span></div>
+                <a href="checkout-shipping.html" class="cta-button checkout-btn">Proceed to Checkout</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: inherit; text-decoration: none;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: inherit; text-decoration: none;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop 05<br>Workshop Road, Nairobi CBD</p>
+                <div class="social-icons" style="margin-top: 15px; font-size: 1.5em;">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2; margin-right: 15px;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #E4405F; margin-right: 15px;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="color: #FFF; margin-right: 15px;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. Your Selection.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Load and display cart items
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
+            const cartItemsDiv = document.getElementById('dynamic-cart-items');
+            const summaryAmount = document.querySelector('.summary-amount');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;">Your cart is empty. <a href="shop.html" style="color: var(--color-secondary); text-decoration: underline;">Continue shopping</a></p>';
+                summaryAmount.textContent = 'KES 0';
+                return;
+            }
+            
+            let totalPrice = 0;
+            cartItemsDiv.innerHTML = cart.map((item, index) => {
+                totalPrice += item.price * item.qty;
+                return `
+                    <div class="cart-item" style="border: 1px solid #FFD700; padding: 15px; margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start;">
+                        <img src="${item.image_url}" alt="${item.name}" style="width: 100px; height: 100px; object-fit: contain; background: #000; border: 1px solid #FFD700; padding: 5px;">
+                        <div style="flex: 1;">
+                            <h3 style="margin: 0 0 5px 0; color: #FFF;">${item.name}</h3>
+                            <p style="margin: 5px 0; color: #888;">Fit: <strong>${item.fit}</strong></p>
+                            <p style="margin: 5px 0; color: #888;">Fabric: <strong>${item.fabric}</strong></p>
+                            <p style="margin: 5px 0; color: #FFD700; font-weight: bold;">KES ${Math.round(item.price).toLocaleString()}</p>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+                                <label>Qty:</label>
+                                <input type="number" min="1" value="${item.qty}" onchange="updateQuantity(${index}, this.value)" style="width: 50px; padding: 5px; background: #1a1a1a; border: 1px solid #FFD700; color: #FFF;">
+                                <button onclick="removeItem(${index})" style="background: #d32f2f; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;">Remove</button>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="color: #FFF; font-weight: bold;">KES ${Math.round(item.price * item.qty).toLocaleString()}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            summaryAmount.textContent = `KES ${Math.round(totalPrice).toLocaleString()}`;;
+        }
+        
+        function updateQuantity(index, newQty) {
+            const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
+            const qty = parseInt(newQty) || 1;
+            if (qty > 0) {
+                cart[index].qty = qty;
+                localStorage.setItem('rigo_cart', JSON.stringify(cart));
+                updateFloatingCart();
+                loadCart();
+            }
+        }
+        
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('rigo_cart', JSON.stringify(cart));
+            updateFloatingCart();
+            loadCart();
+        }
+        
+        // Load cart when page opens
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
+</body>
+</html>

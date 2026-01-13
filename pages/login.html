@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="background-color: #000;"> <main id="login-section" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div class="form-block" style="width: 100%; max-width: 400px; background-color: #0d0d0d; border: 1px solid #FFD700; padding: 30px;">
+            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Staff Entry</h2>
+            <form id="login-form">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="color: #fff; display: block; margin-bottom: 8px;">Email Address</label>
+                    <input type="email" id="login-email" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff;">
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label style="color: #fff; display: block; margin-bottom: 8px;">Password</label>
+                    <input type="password" id="login-password" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff;">
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%; background-color: #FFD700; color: #000; font-weight: bold; border: none; padding: 12px; cursor: pointer;">
+                    Login to Dashboard
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Use your live credentials
+        const SUPABASE_URL = 'https://credvsfvhxuvhkwpsxck.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZWR2c2Z2aHh1dmhrd3BzeGNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzc0NzcsImV4cCI6MjA4Mzg1MzQ3N30.A7UTOBKjNQi7PAfzRalACiyFDuq_-FufV92V9yMG40o';
+        
+        const rigoSupabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Attempt to sign in
+            const { data, error } = await rigoSupabase.auth.signInWithPassword({
+                email,
+                password
+            });
+
+            if (error) {
+                alert("Access Denied: " + error.message);
+            } else {
+                // Success! Redirect to admin dashboard
+                window.location.href = 'admin.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="confirmation-section">
+            <div class="confirmation-box">
+                <div class="confirmation-header">
+                    <span class="checkmark-icon">✓</span> 
+                    <h1>Order Confirmed!</h1>
+                </div>
+
+                <p class="thanks-message">Thank you for your trust. Your RIGO WEAR bespoke journey has officially begun.</p>
+                
+                <div class="order-details-summary">
+                    <h2>Order Reference:</h2>
+                    <p class="order-number" id="conf-order-number">RW-LOADING...</p>
+                    
+                    <div class="detail-row">
+                        <span>Total Paid:</span>
+                        <span class="detail-amount" id="conf-total-paid">$0.00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Status:</span>
+                        <span style="color: #FFD700;">Awaiting Tailor Consultation</span>
+                    </div>
+                </div>
+
+                <div class="next-steps">
+                    <h3>What Happens Next?</h3>
+                    <ul>
+                        <li>Our master tailor will contact you shortly to begin the measurement process.</li>
+                        <li><strong>Need it faster?</strong> Click below to message us directly on WhatsApp.</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <a id="whatsapp-link" href="https://wa.me/254115509921" target="_blank" class="cta-button" style="background-color: #25D366; border-color: #25D366; color: white;">
+                        Chat on WhatsApp
+                    </a>
+                    <a href="../index.html" class="secondary-button">Return to Homepage</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: inherit; text-decoration: none;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: inherit; text-decoration: none;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop 05<br>Workshop Road, Nairobi CBD</p>
+                <div class="social-icons" style="margin-top: 15px; font-size: 1.5em;">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2; margin-right: 15px;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #E4405F; margin-right: 15px;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="color: #FFF; margin-right: 15px;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+    </footer>
+</body>
+</html>

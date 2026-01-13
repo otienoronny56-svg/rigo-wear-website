@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo">RIGO WEAR</div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="product-detail-section">
+            <div class="detail-container">
+                
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img id="pdp-main-image" src="" alt="Loading Product...">
+                    </div>
+                    <div class="thumbnail-images" style="display: none;">
+                        <img src="" alt="Thumbnail 1">
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 class="product-title" id="pdp-title">Loading...</h1>
+                    <p class="product-price" id="pdp-price">Calculating...</p>
+                    
+                    <p class="product-description" id="pdp-desc">
+                        Fetching the finest details of your selected RIGO WEAR garment...
+                    </p>
+
+                    <div class="options-group">
+                        <label for="fit">Select Fit Style:</label>
+                        <select id="fit" name="fit">
+                            <option value="bespoke">Bespoke (Full Custom)</option>
+                            <option value="custom">Custom (Standard Size Base)</option>
+                        </select>
+                    </div>
+
+                    <div class="options-group">
+                        <label for="fabric">Choose Fabric Color:</label>
+                        <select id="fabric" name="fabric">
+                            <option value="charcoal">Charcoal Grey</option>
+                            <option value="navy">Midnight Navy</option>
+                            <option value="black">Deep Black</option>
+                        </select>
+                    </div>
+
+                    <div class="options-group quantity-input">
+                        <label for="qty">Quantity:</label>
+                        <input type="number" id="qty" name="qty" value="1" min="1">
+                    </div>
+
+                    <button class="cta-button add-to-cart-btn">Add to Cart</button>
+
+                    <div class="additional-details">
+                        <div class="detail-item">
+                            <h3>Bespoke Details & Features [+]</h3>
+                            <div class="detail-content" style="display: none;">
+                                <ul>
+                                    <li>Full Floating Canvas Construction</li>
+                                    <li>Working Surgeon's Cuffs</li>
+                                    <li>Personalized Monogramming Available</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <h3>Shipping & Returns [+]</h3>
+                             <div class="detail-content" style="display: none;">
+                                <p>All bespoke suits require 4-6 weeks for tailoring and delivery. Free worldwide shipping. Returns accepted within 30 days for modifications only.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="related-products">
+            <h2>You Might Also Like</h2>
+            <div id="related-grid" class="grid-layout">
+                </div>
+        </section>
+
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html?category=men">Men's Suits</a></li>
+                    <li><a href="shop.html?category=women">Women's Suits</a></li>
+                    <li><a href="shop.html?category=children">Children's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Customer Care</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="customer-policy.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact RIGO WEAR</h4>
+                <p><a href="tel:+254115509921" style="color: inherit; text-decoration: none;">+254 115 509 921</a></p>
+                <p><a href="mailto:rigowear254@gmail.com" style="color: inherit; text-decoration: none;">rigowear254@gmail.com</a></p>
+                <p>Pinks Mall, Shop 05<br>Workshop Road, Nairobi CBD</p>
+                <div class="social-icons" style="margin-top: 15px; font-size: 1.5em;">
+                    <a href="https://www.facebook.com/RIGO WEAR" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2; margin-right: 15px;"></i></a>
+                    <a href="https://www.instagram.com/RIGO1WEAR" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #E4405F; margin-right: 15px;"></i></a>
+                    <a href="https://www.tiktok.com/@RIGO WEAR" target="_blank" title="TikTok"><i class="fab fa-tiktok" style="color: #FFF; margin-right: 15px;"></i></a>
+                    <a href="https://wa.me/254115509921" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

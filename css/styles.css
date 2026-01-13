@@ -1,0 +1,1899 @@
+/* --- 0. CSS Variables & Global Reset --- */
+:root {
+    /* RIGO WEAR Brand Colors */
+    --color-primary: #000000;      /* Deep Black */
+    --color-secondary: #FFD700;    /* Pure Gold */
+    --color-accent: #FFFFFF;       /* Crisp White for text */
+    --color-royal-blue: #4169E1;   /* Royal Blue (A sophisticated accent) */
+    
+    /* Typography */
+    --font-heading: 'Georgia', serif; 
+    --font-body: 'Arial', sans-serif;
+}
+
+/* Global Box Sizing and Basic Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-primary); /* Black background */
+    color: var(--color-accent); /* White text by default */
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-secondary); /* Gold for main headings */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-secondary); /* Gold hover effect */
+}
+
+
+/* --- 1. Header & Navigation Styling --- */
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: fixed; /* Sticky header for luxury feel */
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.9); /* Slight transparency on black */
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2); /* Subtle gold line */
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-secondary); /* RIGO WEAR name in Gold */
+    font-family: var(--font-heading);
+    letter-spacing: 3px;
+}
+
+#main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+#main-nav ul li {
+    margin-left: 30px;
+}
+
+#main-nav ul li a {
+    font-size: 1.1em;
+    padding: 5px 0;
+}
+
+.header-actions .menu-toggle {
+    display: none; /* Hide toggle button on desktop */
+    background: none;
+    border: none;
+    color: var(--color-secondary);
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+
+/* --- 2. Hero Section Styling (The initial luxurious full-screen view) --- */
+#hero {
+    background-image: url('https://images.unsplash.com/photo-1591047990112-51a740ae4778?w=1600&h=900&fit=crop');
+    background-size: cover;
+    background-position: center right;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+    position: relative;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+}
+
+#hero h1,
+#hero p,
+#hero .cta-button {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+#hero p {
+    font-size: 1.5em;
+    color: var(--color-accent);
+    margin-bottom: 30px;
+}
+
+/* Call to Action Button Styling (Gold and prominent) */
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--color-secondary); /* Gold background */
+    color: var(--color-primary); /* Black text on gold */
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: transparent; 
+    color: var(--color-secondary); /* Gold border, gold text on hover */
+}
+/* --- 3. Featured Products/Collections Styling --- */
+#featured-products {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+#featured-products h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Subtle gold line under the section heading */
+#featured-products h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-secondary);
+}
+
+/* Grid Layout for Products (3 columns on desktop) */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+}
+
+/* Styling for an individual Product Card (We'll add the HTML content soon) */
+.product-card {
+    background-color: #0d0d0d; /* Slightly lighter black for contrast */
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15); /* Subtle gold glow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.4em;
+    color: var(--color-accent); /* Product title in white */
+    margin-bottom: 5px;
+}
+
+.product-card p.price {
+    font-size: 1.2em;
+    color: var(--color-secondary); /* Price in Gold */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card .quick-view-btn {
+    /* Basic button styling for quick view */
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-royal-blue); /* Using Royal Blue accent */
+    color: var(--color-accent);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-card .quick-view-btn:hover {
+    background-color: var(--color-secondary); /* Gold on hover */
+    color: var(--color-primary);
+}
+/* --- 4. Bespoke Process/Callout Styling --- */
+#bespoke-callout {
+    background-color: #1a1a1a; /* Dark gray for a slight contrast from pure black */
+    padding: 100px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 215, 0, 0.2); 
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2); 
+}
+
+#bespoke-callout h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#bespoke-callout p {
+    font-size: 1.3em;
+    color: var(--color-accent);
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+/* Secondary Button Styling (for "Learn More") */
+.secondary-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: var(--color-royal-blue); /* Royal Blue accent */
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid var(--color-royal-blue);
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.secondary-button:hover {
+    background-color: var(--color-accent); /* White background on hover */
+    color: var(--color-primary); /* Black text on hover */
+    border-color: var(--color-accent);
+}
+
+/* --- 5. Latest Insights (Blog Section Structure) --- */
+#latest-insights {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+#latest-insights h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Subtle gold line under the section heading */
+#latest-insights h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-secondary);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.insight-card {
+    background-color: #0d0d0d; 
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    padding: 12px;
+    transition: box-shadow 0.3s;
+}
+
+.insight-card:hover {
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.insight-card h3 {
+    color: var(--color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.insight-card p {
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.insight-card a {
+    color: var(--color-royal-blue);
+    font-weight: bold;
+}
+/* --- 6. Footer Styling --- */
+#main-footer {
+    background-color: #0d0d0d;
+    color: #ccc;
+    padding: 60px 5% 20px 5%;
+    font-size: 0.9em;
+    border-top: 3px solid var(--color-secondary); /* Strong Gold separator */
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--color-secondary);
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col p {
+    margin-bottom: 8px;
+}
+
+.footer-col a {
+    color: #ccc;
+}
+
+.footer-col a:hover {
+    color: var(--color-accent);
+}
+
+.social-icons a {
+    display: inline-block;
+    color: var(--color-secondary);
+    font-size: 1.5em;
+    margin-right: 15px;
+    padding: 5px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* ====================================
+   7. MEDIA QUERIES (Mobile/Tablet Adjustments)
+   ==================================== */
+
+/* --- Tablet Devices (Max width 1024px) --- */
+@media (max-width: 1024px) {
+    
+    /* Header/Navigation */
+    #main-nav {
+        display: none; /* Hide standard nav bar on smaller screens */
+    }
+
+    /* Hero Section Adjustments */
+    #hero h1 {
+        font-size: 2.8em;
+    }
+    
+    /* Grid Layouts */
+    /* Forces the product/insights grid to show 2 items per row on tablets */
+    .grid-layout, .insights-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    /* Footer Adjustment */
+    .footer-links {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+
+/* --- Mobile Devices (Max width 600px) --- */
+@media (max-width: 600px) {
+
+    /* Header/Navigation */
+    #main-header {
+        padding: 15px 5%;
+        border-bottom: none; /* Remove subtle gold line for cleaner mobile header */
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    /* Make the menu toggle button visible on mobile */
+    .header-actions .menu-toggle {
+        display: block; 
+    }
+
+    /* Hero Section Adjustments */
+    #hero {
+        height: 80vh; /* Shorter hero section on mobile */
+    }
+    
+    #hero h1 {
+        font-size: 2em;
+    }
+
+    #hero p {
+        font-size: 1.1em;
+    }
+
+    /* Section Padding */
+    #featured-products, #latest-insights, #bespoke-callout {
+        padding: 50px 5%; /* Less vertical padding */
+    }
+
+    /* Grid Layouts */
+    /* Forces the product/insights grid to show 1 item per row on phones */
+    .grid-layout, .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer Adjustment */
+    .footer-links {
+        grid-template-columns: 1fr; /* Stack footer columns vertically */
+        text-align: center;
+    }
+
+    .footer-col h4 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-col ul {
+        padding: 0;
+    }
+    
+    /* Mobile Menu Display */
+    #main-nav.active {
+        display: block; /* Overrides 'display: none' from the tablet query */
+        position: absolute;
+        top: 65px; /* Position it right below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary); /* Use deep black background */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        padding: 10px 0;
+    }
+
+    #main-nav.active ul {
+        flex-direction: column; /* Stack the links vertically */
+        text-align: center;
+    }
+
+    #main-nav.active ul li {
+        margin: 10px 0;
+    }
+}
+/* ====================================
+   8. SHOP PAGE SPECIFIC STYLING
+   ==================================== */
+
+#shop-hero {
+    /* Uses the same styling principles as the main #hero, but shorter */
+    height: 30vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px; 
+    background-color: var(--color-primary); /* Use deep black */
+}
+
+#shop-hero h1 {
+    font-size: 3em;
+}
+
+#product-listing {
+    padding: 60px 5%;
+}
+
+/* Container for sidebar and product grid */
+#product-listing .container {
+    display: flex;
+    gap: 40px;
+}
+
+/* Sidebar Styling */
+#shop-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+#shop-sidebar h2 {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-group h3 {
+    color: var(--color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.filter-group ul {
+    list-style: none;
+}
+
+.filter-group ul li {
+    margin-bottom: 8px;
+}
+
+/* Color Swatches (small color indicators) */
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-swatch {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #333;
+    transition: border-color 0.2s;
+}
+
+.color-swatch.black { background-color: #000; }
+.color-swatch.blue { background-color: var(--color-royal-blue); }
+.color-swatch.gray { background-color: #555; }
+.color-swatch.gold { background-color: var(--color-secondary); }
+
+.color-swatch:hover {
+    border-color: var(--color-secondary);
+}
+
+/* Main Product Grid Area */
+#product-grid {
+    flex-grow: 1;
+    /* Reuse the existing .grid-layout class from index.html */
+}
+
+/* Search Container Styling */
+.search-and-grid {
+    flex-grow: 1;
+}
+
+/* Filter Actions Row */
+.filter-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-accent);
+    font-size: 1em;
+    border-radius: 4px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sort-box {
+    min-width: 200px;
+}
+
+.sort-box select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-accent);
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.sort-box select:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sort-box select option {
+    background-color: #000;
+    color: var(--color-accent);
+}
+
+
+/* --- Mobile Adjustments for Shop Page --- */
+@media (max-width: 900px) {
+    /* Stack the sidebar and the product grid vertically */
+    #product-listing .container {
+        flex-direction: column;
+    }
+    
+    /* Hide the desktop sidebar on mobile */
+    #shop-sidebar {
+        display: none;
+    }
+}
+
+/* Mobile Filter Menu Styles */
+.mobile-filter-menu {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 20px 5%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.mobile-filter-menu.active {
+    display: block;
+}
+
+.mobile-filter-menu h2 {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.mobile-filter-menu .filter-group h3 {
+    color: var(--color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.mobile-filter-menu .filter-group ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.mobile-filter-menu .filter-group ul li {
+    margin-bottom: 12px;
+}
+
+.mobile-filter-menu .filter-group ul li a {
+    color: var(--color-accent);
+    font-size: 1em;
+}
+
+.mobile-filter-menu .filter-group ul li a:hover {
+    color: var(--color-secondary);
+}
+/* ====================================
+   9. CONTACT PAGE SPECIFIC STYLING
+   ==================================== */
+
+#contact-hero {
+    background-color: #0d0d0d;
+    height: 40vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px; 
+}
+
+#contact-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+#contact-hero p {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+#contact-details {
+    padding: 80px 5%;
+}
+
+.contact-container {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-form-area, .info-map-area {
+    flex: 1;
+}
+
+/* Form Styling */
+.contact-form-area h2, .info-map-area h2 {
+    color: var(--color-secondary);
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: var(--color-accent);
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+}
+
+/* Info and Map Styling */
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+#map-placeholder {
+    margin-top: 30px;
+    height: 300px;
+    background-color: #1a1a1a;
+    border: 1px solid var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+    font-size: 1.5em;
+    text-align: center;
+    overflow: hidden;
+}
+
+#map-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+/* --- Mobile Adjustments for Contact Page --- */
+@media (max-width: 800px) {
+    .contact-container {
+        flex-direction: column;
+    }
+}
+/* ====================================
+   10. BESPOKE PAGE SPECIFIC STYLING
+   ==================================== */
+
+#bespoke-hero {
+    /* Similar to contact hero, setting a professional tone */
+    background-color: #0d0d0d;
+    height: 40vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px; 
+}
+
+#bespoke-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+#bespoke-intro {
+    padding: 80px 5%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bespoke-content {
+    flex: 1;
+}
+
+.bespoke-image {
+    flex: 1;
+    height: 450px; /* Adjusted height for your pic.png */
+    background-color: #1a1a1a;
+    border: 3px solid var(--color-secondary); /* Gold border for luxury */
+    overflow: hidden; /* Ensures the image doesn't bleed over the border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bespoke-content h2 {
+    color: var(--color-accent); /* White heading here */
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.bespoke-content p {
+    margin-bottom: 30px;
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+/* Bespoke Process Section */
+#bespoke-process {
+    padding: 80px 5%;
+    background-color: #1a1a1a; /* Dark gray background for contrast */
+    text-align: center;
+}
+
+#bespoke-process h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+}
+
+.process-steps {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.step-card {
+    background-color: #000;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 30px;
+    max-width: 250px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.step-number {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--color-secondary); /* Gold circle */
+    color: var(--color-primary); /* Black number */
+    border-radius: 50%;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.step-card h3 {
+    color: var(--color-accent);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.step-card p {
+    color: #ccc;
+}
+
+/* --- Mobile Adjustments for Bespoke Page --- */
+@media (max-width: 900px) {
+    #bespoke-intro {
+        flex-direction: column;
+    }
+    
+    .bespoke-image {
+        order: -1; /* Move image above text on mobile */
+        margin-bottom: 30px;
+        height: 250px;
+    }
+
+    .process-steps {
+        flex-direction: column; /* Stack the steps vertically on mobile */
+        align-items: center;
+    }
+
+    .step-card {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+/* ====================================
+   11. ABOUT US PAGE SPECIFIC STYLING
+   ==================================== */
+
+#about-hero {
+    /* Uses similar styling to other hero sections */
+    background-color: #0d0d0d;
+    height: 40vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px; 
+}
+
+#about-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* Story Sections (Alternating Layout) */
+.story-section {
+    padding: 80px 5%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: var(--color-primary); /* FIX: Ensure base is black */
+}
+
+.story-section:nth-child(odd) {
+    background-color: #1a1a1a; /* Alternating background for visual interest */
+}
+
+.story-content {
+    flex: 1;
+}
+
+.story-image {
+    flex: 1;
+    height: 350px;
+    background-color: #000;
+    border: 1px solid var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+    font-size: 1.2em;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.story-image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.story-content h2 {
+    color: var(--color-secondary);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.story-content p {
+    margin-bottom: 15px;
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+/* Ensure image comes first when reversed (left-image) */
+.story-section.right-image {
+    flex-direction: row-reverse;
+}
+
+
+/* Value Proposition Section */
+#value-prop {
+    padding: 80px 5%;
+    text-align: center;
+    background-color: var(--color-primary); /* FIX: Ensure this section is black */
+}
+
+#value-prop h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+}
+
+.value-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.value-card {
+    max-width: 350px;
+    background-color: #0d0d0d;
+    padding: 30px;
+    border-top: 5px solid var(--color-royal-blue); /* Subtle royal blue accent */
+    text-align: left;
+}
+
+.value-card h3 {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    color: #ccc;
+}
+
+/* --- Mobile Adjustments for About Page --- */
+@media (max-width: 800px) {
+    .story-section {
+        flex-direction: column;
+    }
+
+    .story-section.right-image {
+        flex-direction: column; /* Resetting the reverse order for mobile */
+    }
+
+    .value-cards {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+    }
+
+    .value-card {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+/* ====================================
+   12. PRODUCT DETAIL PAGE STYLING
+   ==================================== */
+
+#product-detail-section {
+    padding: 100px 5% 50px 5%;
+}
+
+.detail-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- Product Gallery Styling (Left Column) --- */
+.product-gallery {
+    flex: 3;
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 10px;
+}
+
+.thumbnail-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s, border 0.3s;
+    border: 1px solid transparent;
+}
+
+.thumbnail-images img:hover,
+.thumbnail-images img.active {
+    opacity: 1;
+    border-color: var(--color-secondary);
+}
+
+/* --- Product Info Styling (Right Column) --- */
+.product-info {
+    flex: 2;
+    padding-top: 20px;
+}
+
+.product-title {
+    color: var(--color-accent);
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: var(--color-secondary);
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.product-description {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Customization Options */
+.options-group {
+    margin-bottom: 25px;
+}
+
+.options-group label {
+    display: block;
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.options-group select,
+.options-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: var(--color-accent);
+    border-radius: 5px;
+    appearance: none; /* Removes default OS styling for select/number */
+}
+
+.quantity-input input[type="number"] {
+    width: 80px; /* Smaller width for quantity */
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.2em;
+    padding: 15px 0;
+}
+
+/* Additional Details (Accordion/Tabs style) */
+.additional-details {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+    padding-top: 20px;
+}
+
+.detail-item h3 {
+    color: var(--color-accent);
+    font-size: 1.1em;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    cursor: pointer;
+}
+
+.detail-content {
+    /* Initially hidden via JavaScript, shown here for structure */
+    padding: 15px 0;
+    color: #ccc;
+    display: none; 
+}
+
+/* --- Related Products Section --- */
+#related-products {
+    padding: 50px 5% 80px 5%;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+
+#related-products h2 {
+    color: var(--color-secondary);
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* --- Mobile Adjustments for Product Detail Page --- */
+@media (max-width: 900px) {
+    .detail-container {
+        flex-direction: column;
+    }
+
+    .product-gallery, .product-info {
+        flex: auto; /* Allow both columns to take full width */
+    }
+
+    .product-gallery {
+        order: -1; /* Place image at the top */
+    }
+}
+/* ====================================
+   13. CART/CHECKOUT PAGE STYLING
+   ==================================== */
+
+#cart-section {
+    padding: 100px 5% 80px 5%;
+}
+
+.cart-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cart-items-list {
+    flex: 2;
+}
+
+.cart-items-list h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--color-accent);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    padding-bottom: 15px;
+}
+
+/* Individual Cart Item Styling */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details h3 {
+    font-size: 1.2em;
+    color: var(--color-accent);
+    margin: 0;
+}
+
+.custom-options {
+    font-size: 0.9em;
+    color: #999;
+    margin: 5px 0;
+}
+
+.price-per-item {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.item-quantity input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    color: var(--color-accent);
+}
+
+.item-subtotal {
+    font-weight: bold;
+    color: var(--color-secondary);
+    width: 100px;
+    text-align: right;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.remove-item-btn:hover {
+    color: var(--color-royal-blue);
+}
+
+/* Checkout Progress Bar */
+.checkout-progress {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.1em;
+    color: var(--color-secondary);
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 5px;
+}
+
+/* --- Order Summary Box Styling (Right Column) --- */
+.order-summary-box {
+    flex: 1;
+    background-color: #0d0d0d;
+    padding: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    height: fit-content; /* Ensure box doesn't stretch */
+}
+
+.order-summary-box h2 {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    color: var(--color-accent);
+    text-align: center;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.summary-line span {
+    color: #ccc;
+}
+
+.summary-line.grand-total {
+    border-top: 2px solid var(--color-secondary);
+    border-bottom: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 1.3em;
+}
+
+.summary-line.grand-total span {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.continue-shopping {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #999;
+}
+
+/* --- Mobile Adjustments for Cart Page --- */
+@media (max-width: 900px) {
+    .cart-container {
+        flex-direction: column;
+    }
+    
+    .order-summary-box {
+        order: -1; /* Move the summary box to the top on mobile */
+    }
+
+    .cart-item {
+        flex-wrap: wrap; /* Wrap elements on small screens */
+    }
+    
+    .item-details {
+        flex-basis: 100%; /* Details take full width under the image */
+    }
+    
+    .item-quantity, .item-subtotal, .remove-item-btn {
+        margin-left: auto;
+        flex-basis: auto;
+    }
+    
+    .item-quantity {
+        order: 3;
+    }
+    
+    .item-subtotal {
+        order: 4;
+    }
+}
+/* ====================================
+   14. CHECKOUT DETAILS STYLING
+   ==================================== */
+
+#checkout-details-section {
+    padding: 100px 5% 80px 5%;
+}
+
+.checkout-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.checkout-forms {
+    flex: 2;
+}
+
+.checkout-forms h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--color-accent);
+}
+
+/* Form Block Styling */
+.form-block {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.form-block h2 {
+    font-size: 1.8em;
+    color: var(--color-secondary);
+    margin-bottom: 25px;
+}
+
+/* Two-column form layout */
+.form-group-half {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-half .form-group {
+    flex: 1;
+}
+
+/* General form input styling (reuse from contact page) */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: var(--color-accent);
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-group label {
+    display: block;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group .inline-label {
+    display: inline;
+    font-weight: normal;
+    margin-left: 10px;
+    color: #ccc;
+}
+
+/* Checkout Progress Indicator Styling */
+.checkout-progress {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: #666; 
+}
+
+.checkout-progress strong {
+    color: var(--color-secondary);
+}
+
+.checkout-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.proceed-to-payment {
+    padding: 15px 30px;
+}
+
+/* --- Mobile Adjustments for Checkout Page --- */
+@media (max-width: 900px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+
+    .order-summary-box {
+        order: -1;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .form-group-half {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .checkout-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .back-to-cart, .proceed-to-payment {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* ====================================
+   15. CHECKOUT PAYMENT STYLING
+   ==================================== */
+
+#checkout-payment-section {
+    padding: 100px 5% 80px 5%;
+}
+
+/* Payment Options Block */
+.payment-options {
+    margin-bottom: 30px;
+}
+
+.payment-option {
+    border: 1px solid #333;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #1a1a1a;
+    transition: border-color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+
+/* Highlight the selected option */
+.payment-option.selected {
+    border-color: var(--color-secondary);
+    background-color: #0d0d0d;
+}
+
+.payment-option label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 15px;
+    /* Custom styling for radio button */
+    accent-color: var(--color-secondary); 
+    width: 18px;
+    height: 18px;
+}
+
+.card-details-fields {
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 1px dashed #333;
+    /* Styles are reused from form-group and form-group-half */
+}
+
+.payment-logo {
+    color: var(--color-royal-blue);
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Agreement Checkbox */
+.agreement-checkbox {
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.agreement-checkbox a {
+    color: var(--color-royal-blue);
+}
+
+/* Final Place Order Button */
+.place-order-btn {
+    font-size: 1.3em;
+    font-weight: bold;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+/* --- Summary Review Block (Right Column) --- */
+.summary-review-block {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.summary-review-block h4 {
+    color: var(--color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.summary-review-block p {
+    color: #ccc;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.edit-link {
+    display: inline-block;
+    color: var(--color-royal-blue);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+/* ====================================
+   16. ORDER CONFIRMATION PAGE STYLING
+   ==================================== */
+
+#confirmation-section {
+    padding: 100px 5% 80px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Ensure it takes up most of the viewport height */
+}
+
+.confirmation-box {
+    background-color: #0d0d0d;
+    padding: 50px;
+    max-width: 600px;
+    text-align: center;
+    border: 3px solid var(--color-secondary); /* Bold gold border for celebration */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.confirmation-header {
+    margin-bottom: 20px;
+}
+
+.checkmark-icon {
+    font-size: 3em;
+    color: var(--color-secondary);
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.confirmation-box h1 {
+    font-size: 2.5em;
+    color: var(--color-accent);
+}
+
+.thanks-message {
+    font-size: 1.1em;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.order-details-summary {
+    background-color: #1a1a1a;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.order-details-summary h2 {
+    font-size: 1.2em;
+    color: var(--color-secondary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.order-number {
+    font-size: 1.5em;
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.detail-row span {
+    color: #ccc;
+    font-size: 0.95em;
+}
+
+.detail-amount {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.next-steps {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.next-steps h3 {
+    color: var(--color-accent);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.next-steps ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.next-steps ul li a {
+    color: var(--color-royal-blue);
+}
+
+.back-home-btn {
+    /* Reuse secondary-button styling */
+    display: inline-block;
+    padding: 12px 30px;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 600px) {
+    .confirmation-box {
+        padding: 30px;
+        margin: 0 5%;
+        border-width: 2px;
+    }
+}
+/* Floating Cart Button */
+#floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#floating-cart:hover { transform: scale(1.1); }
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* Optimized Mobile-First Grid */
+#product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    flex-grow: 1;
+}
+
+/* Fix for large/inconsistent images */
+.product-card img {
+    width: 100%;
+    height: 280px; /* Fixed height for desktop */
+    object-fit: cover; /* Crops image perfectly to fit the box */
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.product-card .card-content {
+    padding: 15px;
+}
+
+.product-card .brief-desc {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+/* Mobile Adjustments (Phones) */
+@media (max-width: 768px) {
+    #product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* 2 items per row */
+        gap: 10px;
+    }
+    .product-card img {
+        height: 200px; /* Smaller images for mobile */
+    }
+}
+/* Search Bar Styling */
+.search-container {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#shop-search {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--color-accent);
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#shop-search:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        margin-top: 20px; /* Space it out on mobile */
+    }
+}
