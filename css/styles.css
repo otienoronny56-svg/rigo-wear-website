@@ -78,6 +78,16 @@ a:hover {
     padding: 5px 0;
 }
 
+#main-nav {
+    display: flex;
+}
+
+#main-nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
 .header-actions .menu-toggle {
     display: none; /* Hide toggle button on desktop */
     background: none;
@@ -432,15 +442,51 @@ a:hover {
     #main-header {
         padding: 15px 5%;
         border-bottom: none; /* Remove subtle gold line for cleaner mobile header */
+        flex-wrap: wrap;
     }
 
     .logo {
         font-size: 1.5em;
     }
 
+    /* Mobile Navigation */
+    #main-nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #0d0d0d;
+        border-bottom: 1px solid #FFD700;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        width: 100%;
+        order: 3;
+    }
+
+    #main-nav.active {
+        max-height: 300px;
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 5%;
+    }
+
+    #main-nav ul li {
+        padding: 10px 0;
+        border-bottom: 1px solid #222;
+    }
+
     /* Make the menu toggle button visible on mobile */
     .header-actions .menu-toggle {
-        display: block; 
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .header-actions .menu-toggle.active {
+        transform: rotate(90deg);
     }
 
     /* Hero Section Adjustments */
