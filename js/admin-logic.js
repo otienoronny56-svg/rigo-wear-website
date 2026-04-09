@@ -596,7 +596,8 @@ async function loadMediaLibrary() {
 window.openAddProductModal = () => {
     selectedImageUrl = '';
     document.getElementById('modal-preview').style.display = 'none';
-    document.getElementById('modal-choose-img-btn').style.display = 'block';
+    document.getElementById('modal-choose-img-container').style.display = 'flex';
+    document.getElementById('local-upload-progress').style.display = 'none';
     document.getElementById('ml-name').value = '';
     document.getElementById('ml-price').value = '';
     document.getElementById('ml-offer').value = '';
@@ -611,7 +612,7 @@ window.openMediaModal = (url, filename) => {
     selectedImageUrl = url;
     document.getElementById('modal-preview').src = url;
     document.getElementById('modal-preview').style.display = 'block';
-    document.getElementById('modal-choose-img-btn').style.display = 'none';
+    document.getElementById('modal-choose-img-container').style.display = 'none';
     // Pre-fill name from filename (strip extension and underscores)
     const guessedName = filename.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
     document.getElementById('ml-name').value = guessedName;
@@ -627,6 +628,48 @@ window.openMediaModal = (url, filename) => {
 window.closeMediaModal = () => {
     document.getElementById('media-modal').style.display = 'none';
     document.body.style.overflow = '';
+};
+
+window.handleLocalProductImageUpload = async (input) => {
+    const file = input.files[0];
+    if (!file) return;
+
+    const progressMsg = document.getElementById('local-upload-progress');
+    const container = document.getElementById('modal-choose-img-container');
+    
+    progressMsg.style.display = 'block';
+    progressMsg.textContent = 'Uploading to Supabase...';
+    
+    // Clear the input so the same file could be selected again if needed
+    input.value = '';
+
+    const cleanName = file.name.replace(/\s+/g, '_');
+    const storagePath = `product-suits/local_${Date.now()}_${cleanName}`;
+
+    try {
+        const { error } = await client.storage
+            .from('product-images')
+            .upload(storagePath, file, { upsert: true });
+
+        if (error) throw error;
+
+        const { data } = client.storage.from('product-images').getPublicUrl(storagePath);
+        
+        // Use the newly uploaded image!
+        selectedImageUrl = data.publicUrl;
+        document.getElementById('modal-preview').src = data.publicUrl;
+        document.getElementById('modal-preview').style.display = 'block';
+        
+        // Hide the choice container since we now have an image
+        container.style.display = 'none';
+        
+        showNotification('✅ Local image uploaded successfully!');
+    } catch (err) {
+        console.error('Error uploading local image:', err);
+        showNotification('❌ Failed to upload image: ' + err.message, 'error');
+    } finally {
+        progressMsg.style.display = 'none';
+    }
 };
 
 window.saveProductFromMedia = async () => {
