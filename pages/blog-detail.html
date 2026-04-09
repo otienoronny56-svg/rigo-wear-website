@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel='icon' href='../images/logo.png'>
+</head>
+<body style="background: #000; color: #fff; font-family: 'Inter', sans-serif;">
+
+    <header id="main-header">
+        <a href="../index.html" class="logo"><img src="../images/logo.png" alt="RIGO WEAR Logo"></a>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="bespoke.html">Bespoke Suits</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Article Header Section -->
+        <section id="blog-header" style="padding: 130px 20px 40px; max-width: 900px; margin: 0 auto; text-align: center;">
+            <div id="blog-meta-badges" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; opacity: 0;">
+                <div style="background: rgba(65, 105, 225, 0.1); color: #4169E1; padding: 6px 14px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                    <i class="far fa-calendar"></i> <span id="article-date">DATE</span>
+                </div>
+                <div style="background: rgba(255, 215, 0, 0.1); color: #FFD700; padding: 6px 14px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                    <i class="far fa-user"></i> <span id="article-author">AUTHOR</span>
+                </div>
+            </div>
+            
+            <h1 id="article-title" style="font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.2; margin-bottom: 20px; letter-spacing: -1px; opacity: 0; color: #fff;">Loading...</h1>
+            <p id="article-excerpt" style="font-size: 1.1rem; color: #888; line-height: 1.6; max-width: 700px; margin: 0 auto; opacity: 0; font-style: italic;"></p>
+        </section>
+
+        <!-- Main Featured Image -->
+        <section id="blog-image-wrapper" style="max-width: 350px; margin: 0 auto 30px; padding: 0 20px; opacity: 0;">
+            <div style="width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); border: 1px solid #1a1a1a;">
+                <img id="article-image" src="" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </section>
+
+        <!-- Content Body -->
+        <article id="blog-body" style="max-width: 800px; margin: 0 auto 60px; padding: 0 20px; line-height: 1.8; font-size: 1.1rem; color: #ccc; opacity: 0;">
+            <div id="article-content" style="white-space: pre-wrap;"></div>
+        </article>
+
+        <section style="text-align: center; padding-bottom: 60px;">
+            <a href="../index.html" class="cta-button" style="padding: 12px 30px; background: transparent; border: 1px solid #FFD700; color: #FFD700; font-size: 0.9rem;">Back to Insights</a>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-links" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; padding: 40px 20px; border-top: 1px solid #111;">
+             <p style="color: #666; font-size: 0.8rem;">&copy; 2026 RIGO WEAR. Home of Elegance.</p>
+             <p style="color: #666; font-size: 0.8rem;">Systems by Ronny</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const SUPABASE_URL = 'https://credvsfvhxuvhkwpsxck.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZWR2c2Z2aHh1dmhrd3BzeGNrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2ODI3NzQ3NywiZXhwIjoyMDgzODUzNDc3fQ.fUyDf5KDC183qHvxy-mgqFenIFlOb7k8JEHr6xpOGyw';
+        const client = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function loadArticle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (!articleId) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            try {
+                const { data: blog, error } = await client
+                    .from('insights')
+                    .select('*')
+                    .eq('id', articleId)
+                    .single();
+
+                if (error || !blog) throw error;
+
+                // --- Remapping Logic ---
+                const coverImg = blog.link_url || blog.image_url;
+                let author = blog.author_name || 'RIGO WEAR';
+                let displayExcerpt = blog.excerpt || '';
+                
+                if (displayExcerpt.includes('BY: ')) {
+                    const parts = displayExcerpt.split('|');
+                    if (parts.length > 1) {
+                        author = parts[0].replace('BY: ', '').trim();
+                        displayExcerpt = parts.slice(1).join('|').trim();
+                    }
+                }
+
+                // Populate Fields
+                document.getElementById('article-title').textContent = blog.title;
+                document.getElementById('article-excerpt').textContent = displayExcerpt.substring(0, 150) + '...';
+                document.getElementById('article-content').textContent = displayExcerpt;
+                document.getElementById('article-author').textContent = author.toUpperCase();
+                
+                const dateObj = new Date(blog.created_at);
+                document.getElementById('article-date').textContent = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toUpperCase();
+
+                if (coverImg) {
+                    document.getElementById('article-image').src = coverImg;
+                    document.getElementById('blog-image-wrapper').style.opacity = '1';
+                }
+
+                // Fade In Animations
+                const sections = ['blog-meta-badges', 'article-title', 'article-excerpt', 'blog-body'];
+                sections.forEach((id, i) => {
+                    setTimeout(() => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.style.transition = 'all 0.8s ease-out';
+                            el.style.opacity = '1';
+                        }
+                    }, i * 150);
+                });
+
+            } catch (err) {
+                console.error('Error loading article:', err);
+                document.getElementById('article-title').textContent = 'Article Not Found';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
+</body>
+</html>

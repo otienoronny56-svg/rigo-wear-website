@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel='icon' href='../images/logo.png'>
 </head>
 <body>
 
     <header id="main-header">
-        <div class="logo">RIGO WEAR</div>
+        <a href="../index.html" class="logo"><img src="../images/logo.png" alt="RIGO WEAR Logo"></a>
         <nav id="main-nav">
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -85,8 +86,9 @@
                         </div>
                         
                         <div class="checkout-actions">
-                            <a href="cart.html" class="secondary-button back-to-cart">&larr; Back to Cart</a>
-                            <button type="button" class="cta-button" id="confirm-whatsapp-btn" onclick="confirmOrderViaWhatsApp()">Confirm Order via WhatsApp</button>
+                            <a href="cart.html" class="secondary-button back-to-cart">&larr; Back to Cart</a>                            <button type="button" class="cta-button" id="confirm-whatsapp-btn" onclick="confirmOrderViaWhatsApp()" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Confirm Order via WhatsApp
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -95,7 +97,7 @@
                     <h2>Order Summary</h2>
                     <div class="summary-line">
                         <span>Items Subtotal:</span>
-                        <span class="summary-amount">$2,149.00</span>
+                        <span class="summary-amount" id="summary-subtotal">KES 0</span>
                     </div>
                     <div class="summary-line">
                         <span>Estimated Shipping:</span>
@@ -103,12 +105,12 @@
                     </div>
                     <div class="summary-line tax-line">
                         <span>Taxes (Estimated):</span>
-                        <span class="summary-amount">$0.00</span>
+                        <span class="summary-amount">KES 0</span>
                     </div>
                     
-                    <div class="summary-line grand-total">
+                    <div class="summary-line grand-total" style="border-top: 2px solid #FFD700; padding-top: 15px; margin-top: 15px;">
                         <span>Grand Total:</span>
-                        <span class="summary-amount">$2,149.00</span>
+                        <span class="summary-amount" id="summary-total" style="color: #FFD700; font-size: 1.4rem;">KES 0</span>
                     </div>
                 </div>
 
@@ -148,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+        <p class="copyright">&copy; <span id="year">2026</span> RIGO WEAR. All Rights Reserved. Home of Elegance.<br>Designed and Developed by <a href="https://wa.me/254745806488" target="_blank" style="color: #FFD700; text-decoration: none;">Systems by Ronny</a></p>
     </footer>
 
     <script src="../js/script.js"></script>
@@ -158,17 +160,20 @@
             const cart = JSON.parse(localStorage.getItem('rigo_cart')) || [];
             let subtotal = 0;
             cart.forEach(item => {
-                subtotal += item.price * item.qty;
+                subtotal += (item.price || 0) * (item.qty || 1);
             });
             
-            const summaryAmount = document.querySelector('.summary-amount');
-            const grandTotal = document.querySelectorAll('.summary-amount')[3];
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
             
-            if (summaryAmount) summaryAmount.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
-            if (grandTotal) grandTotal.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
+            if (subtotalEl) subtotalEl.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
+            if (totalEl) totalEl.textContent = `KES ${Math.round(subtotal).toLocaleString()}`;
         }
         
-        function confirmOrderViaWhatsApp() {
+        async function confirmOrderViaWhatsApp() {
+            const btn = document.getElementById('confirm-whatsapp-btn');
+            const originalText = btn.innerHTML;
+            
             // Get shipping details from form
             const fullName = document.getElementById('full-name').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -190,8 +195,40 @@
                 alert('Your cart is empty.');
                 return;
             }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SECURING ORDER...';
+
+            let totalPrice = 0;
+            cart.forEach(item => totalPrice += (item.price * item.qty));
+
+            // 1. SAVE TO SUPABASE (Wait for client if initializing)
+            try {
+                if (!supabaseClient) {
+                    // Try to wait a second if it's still initializing
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+
+                if (supabaseClient) {
+                    const { error } = await supabaseClient.from('orders').insert([{
+                        customer_name: fullName,
+                        email: email,
+                        phone: phone,
+                        address: `${address1}, ${city}, ${zip}, ${country}`,
+                        total_amount: totalPrice,
+                        items: cart, // Store full cart JSON
+                        status: 'Pending WhatsApp Confirmation'
+                    }]);
+
+                    if (error) throw error;
+                    console.log("Order saved to database successfully");
+                }
+            } catch (err) {
+                console.error("Database Save Error:", err);
+                // We still proceed to WhatsApp even if DB fails, but we notify admin later
+            }
             
-            // Build order summary message
+            // 2. BUILD WHATSAPP MESSAGE
             let message = `*NEW ORDER FROM RIGO WEAR*\n\n`;
             message += `*CUSTOMER DETAILS:*\n`;
             message += `Name: ${fullName}\n`;
@@ -201,10 +238,8 @@
             message += `${address1}\n${city}, ${zip}\n${country}\n\n`;
             message += `*ORDER ITEMS:*\n`;
             
-            let totalPrice = 0;
             cart.forEach((item, idx) => {
                 const itemTotal = item.price * item.qty;
-                totalPrice += itemTotal;
                 message += `\n${idx + 1}. ${item.name}\n`;
                 message += `   Quantity: ${item.qty}\n`;
                 message += `   Fit: ${item.fit}\n`;
@@ -214,23 +249,26 @@
             });
             
             message += `\n\n*ORDER TOTAL: KES ${Math.round(totalPrice).toLocaleString()}*\n\n`;
-            message += `Please confirm this order and we will proceed with payment collection.`;
+            message += `*NOTE ON MEASUREMENTS:*\n`;
+            message += `I understand that the RIGO team will follow up shortly to collect my precise measurements and suit sizing details.\n\n`;
+            message += `Please confirm this order to proceed with manual payment collection.`;
             
-            // Encode message for WhatsApp
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/254115509921?text=${encodedMessage}`;
             
-            // Store order in session before redirecting
-            sessionStorage.setItem('current_order', JSON.stringify({
-                customer: { fullName, email, phone, address1, city, zip, country },
-                cart: cart,
-                total: totalPrice
-            }));
-            
             // Open WhatsApp
             window.open(whatsappURL, '_blank');
+
+            // Reset button
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            
+            // Optional: Clear cart after successful redirection
+            // localStorage.removeItem('rigo_cart');
         }
         
         // Load summary on page load
         document.addEventListener('DOMContentLoaded', loadCheckoutSummary);
     </script>
+
+

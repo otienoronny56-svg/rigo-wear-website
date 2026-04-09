@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel='icon' href='../images/logo.png'>
 </head>
 <body>
 
     <header id="main-header">
-        <div class="logo">RIGO WEAR</div>
+        <a href="../index.html" class="logo"><img src="../images/logo.png" alt="RIGO WEAR Logo"></a>
         <nav id="main-nav">
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -40,7 +42,7 @@
             </div>
 
             <div class="bespoke-image">
-                <img src="../images/.pic.png" alt="RIGO WEAR Bespoke Tailoring" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="../images/bespoke-main.png" alt="RIGO WEAR Bespoke Tailoring" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </section>
 
@@ -81,6 +83,69 @@
             </div>
         </section>
 
+        <!-- Fabric Heritage & Pricing Guide -->
+        <section id="pricing-guide" style="padding: 100px 5%; background: #000; border-top: 1px solid #111;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; color: #fff; letter-spacing: 2px;">Fabric Heritage & Pricing</h2>
+                <p style="color: #888; margin-top: 15px;">Luxury is in the thread. Choose your foundation.</p>
+                <div style="width: 60px; height: 3px; background: #FFD700; margin: 25px auto 0;"></div>
+            </div>
+
+            <style>
+                .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+                .price-card { background: #080808; border: 1px solid #111; padding: 40px; text-align: center; transition: all 0.3s ease; }
+                .price-card:hover { border-color: #FFD700; transform: translateY(-10px); background: #0d0d0d; }
+                .price-card h3 { color: #FFD700; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+                .price-card .cost { font-size: 2rem; color: #fff; font-weight: bold; margin-bottom: 20px; }
+                .price-card ul { list-style: none; padding: 0; color: #888; font-size: 0.95rem; line-height: 2; margin-bottom: 30px; }
+                .price-card .tier-tag { display: inline-block; padding: 5px 15px; border: 1px solid rgba(255,215,0,0.3); color: #FFD700; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
+            </style>
+
+            <div class="pricing-grid">
+                <!-- Essential -->
+                <div class="price-card">
+                    <div class="tier-tag">Standard Collection</div>
+                    <h3>Essential Series</h3>
+                    <p class="cost">KES 8,000 - 12,000</p>
+                    <ul>
+                        <li>High-Quality Wool Blends</li>
+                        <li>Durable Performance Fabrics</li>
+                        <li>Classic Business Silhouettes</li>
+                        <li>Standard Lead Time (14 Days)</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%;">Select Essential</a>
+                </div>
+
+                <!-- Executive -->
+                <div class="price-card" style="border-color: rgba(65, 105, 225, 0.3);">
+                    <div class="tier-tag" style="color: #4169E1; border-color: rgba(65, 105, 225, 0.3);">Classic Executive</div>
+                    <h3>Executive Line</h3>
+                    <p class="cost" style="color: #fff;">KES 13,000 - 17,000</p>
+                    <ul>
+                        <li>Super 120s Italian Wools</li>
+                        <li>Half-Canvas Construction</li>
+                        <li>Breathable Natural Fibers</li>
+                        <li>Priority Fitting Schedule</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%; border-color: #4169E1; color: #4169E1;">Select Executive</a>
+                </div>
+
+                <!-- Signature -->
+                <div class="price-card" style="border-color: #FFD700; box-shadow: 0 10px 30px rgba(255,215,0,0.05);">
+                    <div class="tier-tag" style="background: #FFD700; color: #000;">Premium Masterpiece</div>
+                    <h3>Signature Series</h3>
+                    <p class="cost">KES 18,000 - &#8734;</p>
+                    <ul>
+                        <li>Super 150s+ Wools & Cashmere</li>
+                        <li>Full-Canvas Hand-Construction</li>
+                        <li>Rare Linings & Horn Buttons</li>
+                        <li>Lifetime Fit Warranty</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%;">Select Signature</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer id="main-footer">
@@ -115,9 +180,11 @@
                 </div>
             </div>
         </div>
-        <p class="copyright">&copy; <span id="year">2025</span> RIGO WEAR. All Rights Reserved. Luxury Design.</p>
+        <p class="copyright">&copy; <span id="year">2025</span> RIGO WEAR. All Rights Reserved. Home of Elegance.<br>Designed and Developed by <a href="https://wa.me/254745806488" target="_blank" style="color: #FFD700; text-decoration: none;">Systems by Ronny</a></p>
     </footer>
 
     <script src="../js/script.js"></script>
 </body>
 </html>
+
+

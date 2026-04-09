@@ -7,19 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { display: flex; min-height: 100vh; background: #000; overflow: hidden; position: relative; }
+        body { display: flex; min-height: 100vh; background: #000; overflow: hidden; position: relative; font-family: 'Arial', sans-serif; }
+        
         /* Sidebar Styling */
-        .sidebar { width: 250px; background: #0d0d0d; border-right: 1px solid #FFD700; display: flex; flex-direction: column; padding: 20px; position: fixed; left: 0; top: 0; height: 100vh; z-index: 1000; }
+        .sidebar { width: 250px; background: #0d0d0d; border-right: 1px solid #FFD700; display: flex; flex-direction: column; padding: 20px; position: fixed; left: 0; top: 0; height: 100vh; z-index: 1000; transition: transform 0.3s ease; }
         .sidebar h2 { font-size: 1.2rem; margin-bottom: 30px; color: #FFD700; text-align: center; }
         .nav-btn { background: none; border: 1px solid transparent; color: #ccc; padding: 12px; text-align: left; cursor: pointer; margin-bottom: 10px; transition: 0.3s; }
         .nav-btn:hover, .nav-btn.active { border-color: #FFD700; color: #FFD700; background: #1a1a1a; }
         
+        .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; }
+        
         /* Content Area */
-        .content-area { flex-grow: 1; padding: 40px; overflow-y: auto; height: 100vh; margin-left: 250px; }
+        .content-area { flex-grow: 1; padding: 40px; overflow-y: auto; height: 100vh; margin-left: 250px; transition: margin-left 0.3s; }
         .view-section { display: none; }
         .view-section.active { display: block; }
         
         .admin-card { background: #0d0d0d; border: 1px solid #333; padding: 20px; margin-bottom: 20px; }
+
+        /* Mobile Header */
+        .mobile-header { display: none; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 15px 20px; border: 1px solid #FFD700; border-radius: 5px; margin-bottom: 20px; }
+        .mobile-header h2 { margin: 0; color: #FFD700; font-size: 1.2rem; }
+        .mobile-menu-btn { background: none; border: none; color: #FFD700; font-size: 1.8rem; cursor: pointer; }
 
         /* Inventory Table Styling */
         table tr { border-bottom: 1px solid #222; }
@@ -33,27 +41,13 @@
             font-weight: bold;
             text-align: center;
             display: inline-block;
-            min-width: 120px;
+            min-width: 100px;
             cursor: pointer;
             transition: 0.3s;
         }
-        .status-in-stock {
-            background: #28a745;
-            color: white;
-        }
-        .status-out-of-stock {
-            background: #dc3545;
-            color: white;
-        }
-        .status-in-stock:hover {
-            background: #1e8449;
-            transform: scale(1.05);
-        }
-        .status-out-of-stock:hover {
-            background: #c82333;
-            transform: scale(1.05);
-        }
-
+        .status-in-stock { background: #28a745; color: white; }
+        .status-out-of-stock { background: #dc3545; color: white; }
+        
         /* Edit Price Input */
         .price-edit-input {
             background: #1a1a1a;
@@ -61,12 +55,8 @@
             color: #fff;
             padding: 8px 12px;
             border-radius: 3px;
-            width: 120px;
+            width: 100px;
             text-align: center;
-        }
-        .price-edit-input:focus {
-            outline: none;
-            box-shadow: 0 0 5px #FFD700;
         }
 
         /* Action Buttons */
@@ -76,32 +66,17 @@
             color: #FFD700;
             padding: 6px 12px;
             cursor: pointer;
-            margin: 0 4px;
+            margin: 2px;
             border-radius: 3px;
             transition: 0.3s;
             font-size: 0.85rem;
         }
-        .action-btn:hover {
-            background: #FFD700;
-            color: #000;
-        }
-        .action-btn-danger {
-            border-color: #dc3545;
-            color: #dc3545;
-        }
-        .action-btn-danger:hover {
-            background: #dc3545;
-            color: white;
-        }
+        .action-btn:hover { background: #FFD700; color: #000; }
+        .action-btn-danger { border-color: #dc3545; color: #dc3545; }
+        .action-btn-danger:hover { background: #dc3545; color: white; }
 
         /* Product Image */
-        .product-thumb {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 3px;
-            border: 1px solid #333;
-        }
+        .product-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 3px; border: 1px solid #333; }
 
         .form-block {
             background: #0d0d0d;
@@ -109,28 +84,6 @@
             padding: 30px;
             border-radius: 5px;
             margin-bottom: 20px;
-        }
-        .form-block h2 {
-            color: #FFD700;
-            margin-bottom: 20px;
-        }
-        .form-block input,
-        .form-block textarea,
-        .form-block select {
-            width: 100%;
-            margin-bottom: 12px;
-            padding: 12px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: #fff;
-            border-radius: 3px;
-        }
-        .form-block input:focus,
-        .form-block textarea:focus,
-        .form-block select:focus {
-            outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 5px #FFD700;
         }
         .cta-button {
             background: #FFD700;
@@ -143,30 +96,61 @@
             transition: 0.3s;
             width: 100%;
         }
-        .cta-button:hover {
-            background: #ffed4e;
-            transform: translateY(-2px);
-        }
 
-        .form-group {
-            margin-bottom: 12px;
+        /* Media Queries for Responsiveness */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .content-area { margin-left: 0; padding: 20px; }
+            .desktop-header { display: none !important; }
+            .mobile-header { display: flex; }
+            
+            #insight-form > div { grid-template-columns: 1fr !important; }
+            #insight-form > div:nth-child(2) { display: flex; flex-direction: column; }
+            #admin-blogs-list { grid-template-columns: 1fr !important; }
+            
+            .modal-content { max-width: 95% !important; padding: 20px !important; margin: 10px auto !important; }
+        }
+        
+        @media (max-width: 600px) {
+            .content-area { padding: 15px; }
+            .price-edit-input { width: 80px; }
+            .action-btn { padding: 6px 8px; font-size: 0.8rem; }
+            
+            h2 { font-size: 1.3rem !important; }
+            
+            #inventory-search { width: 100% !important; margin-bottom: 15px; }
+            #view-inventory > div:first-child { flex-direction: column; align-items: stretch !important; gap: 10px; }
+
+            .admin-card { padding: 15px; }
+            .admin-card h4 { font-size: 1rem !important; }
         }
     </style>
+<link rel='icon' href='../images/logo.png'>
 </head>
 <body>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <aside class="sidebar">
-        <h2>RIGO WEAR</h2>
+        <h2><i class="fas fa-crown" style="margin-right: 8px;"></i>RIGO WEAR</h2>
         <button class="nav-btn active" onclick="showView('inventory')">📦 Manage Inventory</button>
-        <button class="nav-btn" onclick="showView('add-item')">➕ Add New Suit</button>
+        <button class="nav-btn" onclick="showView('media-library')">🖼️ Media Library</button>
+
         <button class="nav-btn" onclick="showView('orders')">👤 Client Orders</button>
         <button class="nav-btn" onclick="showView('home-sections')">🏠 Home Page CMS</button>
         <button id="admin-logout" class="nav-btn" style="margin-top: auto; color: red;">Logout</button>
     </aside>
 
     <main class="content-area">
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <h2><i class="fas fa-crown"></i> RIGO ADMIN</h2>
+            <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+
         <!-- Admin Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 20px; border: 1px solid #FFD700; border-radius: 5px;">
+        <div class="desktop-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 20px; border: 1px solid #FFD700; border-radius: 5px;">
             <div>
                 <h1 style="margin: 0; color: #FFD700; font-size: 2rem;">RIGO WEAR COMMAND CENTER</h1>
                 <p style="margin: 5px 0 0 0; color: #fff; font-size: 0.95rem;"><i class="fas fa-user-shield"></i> <span id="admin-status">You are logged in as Administrator</span></p>
@@ -178,65 +162,93 @@
         </div>
 
         <section id="view-home-sections" class="view-section active">
-            <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 25px; border: 1px solid #FFD700; border-radius: 8px; margin-bottom: 30px;">
-                <h2 style="color: #FFD700; margin-top: 0; display: flex; align-items: center; gap: 10px;"><i class="fas fa-blog"></i> Blog Management</h2>
-                <form id="insight-form" style="margin-bottom: 20px;">
-                    <input type="text" id="ins-title" placeholder="Article Title" required>
-                    <textarea id="ins-excerpt" placeholder="Short preview text..." style="resize: vertical; min-height: 80px;"></textarea>
-                    <button type="submit" class="cta-button">📝 Post New Blog</button>
-                </form>
-                <hr style="border: none; border-top: 1px solid #333; margin: 20px 0;">
-                <h3 style="color: #FFD700; margin-bottom: 15px;">📚 Published Blogs</h3>
-                <div id="admin-blogs-list" style="max-height: 400px; overflow-y: auto;"></div>
-            </div>
+            <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 30px; border: 1px solid #FFD700; border-radius: 12px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <h2 style="color: #FFD700; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 1.8rem; letter-spacing: 1px;">
+                    <i class="fas fa-pen-nib"></i> CREATE MASTERPIECE BLOG
+                </h2>
+                
+                <form id="insight-form" style="display: grid; gap: 20px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="color: #FFD700; display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">ARTICLE TITLE</label>
+                            <input type="text" id="ins-title" placeholder="e.g. The 2026 Shift..." required 
+                                style="width: 100%; padding: 14px; background: #080808; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="color: #FFD700; display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">AUTHOR NAME</label>
+                            <input type="text" id="ins-author" placeholder="e.g. RONNY WINSTONE" required 
+                                style="width: 100%; padding: 14px; background: #080808; border: 1px solid #333; color: #fff; border-radius: 6px; box-sizing: border-box;">
+                        </div>
+                    </div>
 
-            <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 25px; border: 1px solid #28a745; border-radius: 8px;">
-                <h2 style="color: #28a745; margin-top: 0; display: flex; align-items: center; gap: 10px;"><i class="fas fa-image"></i> Signature Collections</h2>
-                <form id="sig-form" style="margin-bottom: 20px;">
-                    <input type="text" id="sig-name" placeholder="Collection Name" required>
-                    <input type="file" id="sig-image" accept="image/*" required style="padding: 10px; cursor: pointer;">
-                    <button type="submit" class="cta-button">🎨 Add Collection</button>
+                    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px;">
+                        <div>
+                            <label style="color: #FFD700; display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">SHORT PREVIEW (EXCERPT)</label>
+                            <textarea id="ins-excerpt" placeholder="A catchy hook to grab attention..." 
+                                style="width: 100%; height: 80px; padding: 12px; background: #080808; border: 1px solid #333; color: #ccc; border-radius: 6px; font-size: 0.95rem; resize: none; box-sizing: border-box;"></textarea>
+                            
+                            <label style="color: #FFD700; display: block; margin: 15px 0 8px; font-weight: bold; font-size: 0.9rem;">MAIN STORY CONTENT</label>
+                            <textarea id="ins-content" placeholder="Tell the full story here..." 
+                                style="width: 100%; height: 200px; padding: 12px; background: #080808; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 1rem; resize: vertical; box-sizing: border-box;"></textarea>
+                        </div>
+
+                        <div style="background: #0d0d0d; padding: 20px; border: 1px dashed #333; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                            <label style="color: #FFD700; display: block; margin-bottom: 15px; font-weight: bold; font-size: 0.9rem;">COVER IMAGE</label>
+                            
+                            <!-- Image Preview Area -->
+                            <div id="blog-image-preview" style="width: 100%; aspect-ratio: 16/9; background: #050505; border-radius: 4px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #222;">
+                                <img id="blog-preview-img" src="" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                                <span id="blog-preview-placeholder" style="color: #444; font-size: 0.8rem;">No image selected</span>
+                            </div>
+
+                            <input type="hidden" id="ins-image-url">
+                            <button type="button" onclick="openMediaPicker('blog')" class="action-btn" style="width: 100%; padding: 12px; margin-bottom: 10px;">
+                                🖼️ Choose from Gallery
+                            </button>
+                            <p style="color: #666; font-size: 0.75rem;">OR upload a fresh one</p>
+                            <input type="file" id="ins-image-file" accept="image/*" style="width: 100%; font-size: 0.8rem; color: #999;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta-button" style="padding: 18px; font-size: 1.1rem; letter-spacing: 2px;">📽️ PUBLISH TO WEBSITE</button>
                 </form>
-                <hr style="border: none; border-top: 1px solid #333; margin: 20px 0;">
-                <h3 style="color: #28a745; margin-bottom: 15px;">✨ Current Collections</h3>
-                <div id="admin-collections-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;"></div>
+
+                <hr style="border: none; border-top: 1px solid #222; margin: 40px 0;">
+
+                <h3 style="color: #FFD700; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-size: 1.4rem;">
+                    <i class="fas fa-th-list"></i> PUBLISHED EDITORIALS
+                </h3>
+                <div id="admin-blogs-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;"></div>
             </div>
         </section>
-            <div class="form-block">
-                <h2>Add New Bespoke Suit</h2>
-                <form id="product-form">
-                    <input type="text" id="p-name" placeholder="Suit Name" required>
-                    <div style="display:flex; gap:10px;">
-        <section id="view-add-item" class="view-section">
-            <div class="form-block">
-                <h2>Add New Bespoke Suit</h2>
-                <form id="product-form">
-                    <input type="text" id="p-name" placeholder="Suit Name" required>
-                    <div style="display:flex; gap:10px;">
-                        <input type="number" id="p-price" placeholder="Price (KES)" required>
-                        <input type="number" id="p-offer" placeholder="Offer Price KES (Optional)">
-                    </div>
-                    <select id="p-cat">
-                        <option value="Men">Men's Suits</option>
-                        <option value="Women">Women's Suits</option>
-                        <option value="Children">Children's Wear</option>
-                        <option value="Ankaras">Ankaras & African Attire</option>
-                        <option value="Senator">Senator Suits</option>
-                    </select>
-                    <select id="p-status">
-                        <option value="In Stock">In Stock</option>
-                        <option value="Sold Out">Sold Out</option>
-                    </select>
-                    <textarea id="p-desc" placeholder="Product Description..." required></textarea>
-                    <input type="text" id="p-features" placeholder="Features (Comma separated)">
-                    <input type="file" id="p-image-file" accept="image/*" required>
-                    <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-                        <input type="checkbox" id="p-featured" style="width: auto;">
-                        <label for="p-featured" style="margin: 0; color: #FFD700;">Feature in Signature Collection on Homepage</label>
-                    </div>
-                    <button type="submit" class="cta-button">Upload to Website</button>
-                </form>
+
+
+        <!-- ===== MEDIA LIBRARY ===== -->
+        <section id="view-media-library" class="view-section">
+            <h2 style="color:#FFD700; margin-bottom:6px;">🖼️ Media Library — product-suits</h2>
+            <p style="color:#999; margin-bottom:16px; font-size:0.9rem;">Click any image to create a product from it. Images are stored in Supabase Storage.</p>
+
+            <!-- Upload Zone -->
+            <div id="upload-zone" onclick="document.getElementById('media-upload-input').click()"
+                style="border:2px dashed #FFD700; border-radius:8px; padding:12px; text-align:center; cursor:pointer; background:#0d0d0d; margin-bottom:24px; transition:0.2s;"
+                onmouseover="this.style.background='#1a1600'" onmouseout="this.style.background='#0d0d0d'"
+                ondragover="event.preventDefault();this.style.borderColor='#fff'" ondragleave="this.style.borderColor='#FFD700'"
+                ondrop="handleMediaDrop(event)">
+                <input type="file" id="media-upload-input" accept="image/*" multiple style="display:none;" onchange="handleMediaUpload(this.files)">
+                <p style="font-size:1.2rem;margin:0;">📁 <span style="color:#FFD700;font-weight:bold;font-size:0.9rem;margin-left:8px;">Click or drag images here to upload</span></p>
             </div>
+
+            <!-- Upload Progress -->
+            <div id="upload-progress-box" style="display:none; background:#0d0d0d; border:1px solid #333; border-radius:6px; padding:16px; margin-bottom:20px;">
+                <p style="color:#FFD700;margin:0 0 10px;font-weight:bold;">Uploading...</p>
+                <div id="upload-progress-list" style="max-height:200px;overflow-y:auto;"></div>
+            </div>
+
+
+
+            <!-- Image Grid -->
+            <div id="media-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;"></div>
+            <p id="media-loading" style="color:#999;text-align:center;padding:40px;">Loading images from Supabase Storage...</p>
         </section>
 
         <section id="view-inventory" class="view-section">
@@ -250,10 +262,11 @@
                     <thead>
                         <tr style="background: #1a1a1a; border-bottom: 2px solid #FFD700;">
                             <th style="padding: 15px; text-align: left; color: #FFD700; font-weight: bold;">Product</th>
+                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Category</th>
                             <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Image</th>
-                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Original Price</th>
-                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Offer Price</th>
-                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Discount %</th>
+                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Original</th>
+                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Offer</th>
+                            <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Sale%</th>
                             <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Stock</th>
                             <th style="padding: 15px; text-align: center; color: #FFD700; font-weight: bold;">Actions</th>
                         </tr>
@@ -268,8 +281,86 @@
             <div id="admin-orders-list"></div>
         </section>
 
+
+        <!-- Modals Container (Global) -->
+        <div id="media-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; overflow-y:auto; padding:40px 20px;">
+            <div class="modal-content" style="max-width:560px; margin:0 auto; background:#111; border:1px solid #FFD700; border-radius:8px; padding:30px; position:relative;">
+                <button onclick="closeMediaModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#FFD700;font-size:1.4rem;cursor:pointer;">✕</button>
+                <img id="modal-preview" src="" style="width:100%;height:220px;object-fit:cover;border-radius:5px;margin-bottom:18px;border:1px solid #333;">
+                <h3 style="color:#FFD700;margin:0 0 16px;">Create Product from this Image</h3>
+                <input type="text" id="ml-name" placeholder="Suit / Product Name" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;margin-bottom:10px;box-sizing:border-box;">
+                <div style="display:flex;gap:10px;margin-bottom:10px;">
+                    <input type="number" id="ml-price" placeholder="Original Price (KES)" style="flex:1;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;">
+                    <input type="number" id="ml-offer" placeholder="Offer Price (optional)" style="flex:1;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;">
+                </div>
+                <select id="ml-cat" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;margin-bottom:10px;">
+                    <option value="Men">Men's Suits</option>
+                    <option value="Women">Women's Suits</option>
+                    <option value="Children">Children's Wear</option>
+                    <option value="Ankaras">Ankaras &amp; African Attire</option>
+                    <option value="Senator">Senator Suits</option>
+                </select>
+                <textarea id="ml-desc" placeholder="Product description..." rows="3" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;resize:vertical;margin-bottom:10px;box-sizing:border-box;"></textarea>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                    <input type="checkbox" id="ml-featured" style="width:auto;">
+                    <label for="ml-featured" style="color:#FFD700;margin:0;">Feature in Signature Collection</label>
+                </div>
+                <button onclick="saveProductFromMedia()" style="width:100%;background:#FFD700;color:#000;padding:13px;border:none;border-radius:4px;font-weight:bold;cursor:pointer;font-size:1rem;">✅ Save Product to Website</button>
+                <div id="ml-saving" style="display:none;text-align:center;margin-top:10px;color:#FFD700;">Saving...</div>
+            </div>
+        </div>
+
+        <div id="edit-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; overflow-y:auto; padding:40px 20px;">
+            <div class="modal-content" style="max-width:560px; margin:0 auto; background:#111; border:1px solid #FFD700; border-radius:8px; padding:30px; position:relative;">
+                <button onclick="closeEditModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#FFD700;font-size:1.4rem;cursor:pointer;">✕</button>
+                <img id="edit-preview" src="" style="width:100%;height:220px;object-fit:cover;border-radius:5px;margin-bottom:18px;border:1px solid #333;">
+                <h3 style="color:#FFD700;margin:0 0 16px;">Update Product Details</h3>
+                <input type="hidden" id="edit-id">
+                
+                <label style="color:#FFD700; font-size: 0.8rem; display: block; margin-bottom: 4px;">PRODUCT NAME</label>
+                <input type="text" id="edit-name" placeholder="Suit Name" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;margin-bottom:12px;box-sizing:border-box;">
+                
+                <div style="display:flex;gap:10px;margin-bottom:12px;">
+                    <div style="flex:1;">
+                        <label style="color:#FFD700; font-size: 0.8rem; display: block; margin-bottom: 4px;">ORIGINAL PRICE</label>
+                        <input type="number" id="edit-price" placeholder="Original Price" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;">
+                    </div>
+                    <div style="flex:1;">
+                        <label style="color:#FFD700; font-size: 0.8rem; display: block; margin-bottom: 4px;">OFFER PRICE</label>
+                        <input type="number" id="edit-offer" placeholder="Offer Price (optional)" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;">
+                    </div>
+                </div>
+
+                <label style="color:#FFD700; font-size: 0.8rem; display: block; margin-bottom: 4px;">CATEGORY</label>
+                <select id="edit-cat" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;margin-bottom:12px;">
+                    <option value="Men">Men's Suits</option>
+                    <option value="Women">Women's Suits</option>
+                    <option value="Children">Children's Wear</option>
+                    <option value="Ankaras">Ankaras & African Attire</option>
+                    <option value="Senator">Senator Suits</option>
+                </select>
+
+                <label style="color:#FFD700; font-size: 0.8rem; display: block; margin-bottom: 4px;">DESCRIPTION</label>
+                <textarea id="edit-desc" placeholder="Product description..." rows="4" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;resize:vertical;margin-bottom:16px;box-sizing:border-box;"></textarea>
+                
+                <button onclick="saveProductEdits()" style="width:100%;background:#FFD700;color:#000;padding:13px;border:none;border-radius:4px;font-weight:bold;cursor:pointer;font-size:1rem; letter-spacing: 1px;">💾 SAVE CHANGES</button>
+                <div id="edit-saving" style="display:none;text-align:center;margin-top:10px;color:#FFD700;">Saving...</div>
+            </div>
+        </div>
+
+        <!-- ===== MEDIA PICKER MODAL ===== -->
+        <div id="media-picker-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:10000; overflow-y:auto; padding:40px 20px;">
+            <div class="modal-content" style="max-width:800px; margin:0 auto; background:#111; border:1px solid #FFD700; border-radius:8px; padding:30px; position:relative;">
+                <button onclick="closeMediaPicker()" style="position:absolute;top:15px;right:20px;background:none;border:none;color:#FFD700;font-size:1.5rem;cursor:pointer;">✕</button>
+                <h2 style="color:#FFD700;margin:0 0 10px;">Select Cover Image</h2>
+                <div id="picker-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px; margin-top: 20px;"></div>
+                <p id="picker-loading" style="color:#999;text-align:center;padding:40px;">Searching your collections...</p>
+            </div>
+        </div>
     </main>
 
     <script src="../js/admin-logic.js"></script>
 </body>
 </html>
+
+

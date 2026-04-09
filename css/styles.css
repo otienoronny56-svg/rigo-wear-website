@@ -1,33 +1,44 @@
 /* --- 0. CSS Variables & Global Reset --- */
 :root {
     /* RIGO WEAR Brand Colors */
-    --color-primary: #000000;      /* Deep Black */
-    --color-secondary: #FFD700;    /* Pure Gold */
-    --color-accent: #FFFFFF;       /* Crisp White for text */
-    --color-royal-blue: #4169E1;   /* Royal Blue (A sophisticated accent) */
-    
+    --color-primary: #000000;
+    /* Deep Black */
+    --color-secondary: #FFD700;
+    /* Pure Gold */
+    --color-accent: #FFFFFF;
+    /* Crisp White for text */
+    --color-royal-blue: #4169E1;
+    /* Royal Blue (A sophisticated accent) */
+
     /* Typography */
-    --font-heading: 'Georgia', serif; 
+    --font-heading: 'Georgia', serif;
     --font-body: 'Arial', sans-serif;
 }
 
 /* Global Box Sizing and Basic Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: var(--color-primary); /* Black background */
-    color: var(--color-accent); /* White text by default */
+    background-color: var(--color-primary);
+    /* Black background */
+    color: var(--color-accent);
+    /* White text by default */
     font-family: var(--font-body);
     line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font-heading);
-    color: var(--color-secondary); /* Gold for main headings */
+    color: var(--color-secondary);
+    /* Gold for main headings */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -39,7 +50,8 @@ a {
 }
 
 a:hover {
-    color: var(--color-secondary); /* Gold hover effect */
+    color: var(--color-secondary);
+    /* Gold hover effect */
 }
 
 
@@ -49,19 +61,32 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
-    position: fixed; /* Sticky header for luxury feel */
+    position: fixed;
+    /* Sticky header for luxury feel */
     width: 100%;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.9); /* Slight transparency on black */
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2); /* Subtle gold line */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Slight transparency on black */
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    /* Subtle gold line */
 }
 
 .logo {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--color-secondary); /* RIGO WEAR name in Gold */
-    font-family: var(--font-heading);
-    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    /* Subtle hover effect for luxury feel */
+}
+
+.logo img {
+    height: 60px;
+    /* Increased for better visibility of the Home of Elegance text */
+    width: auto;
+    object-fit: contain;
 }
 
 #main-nav ul {
@@ -89,7 +114,8 @@ a:hover {
 }
 
 .header-actions .menu-toggle {
-    display: none; /* Hide toggle button on desktop */
+    display: none;
+    /* Hide toggle button on desktop */
     background: none;
     border: none;
     color: var(--color-secondary);
@@ -100,9 +126,10 @@ a:hover {
 
 /* --- 2. Hero Section Styling (The initial luxurious full-screen view) --- */
 #hero {
-    background-image: url('https://images.unsplash.com/photo-1591047990112-51a740ae4778?w=1600&h=900&fit=crop');
+    background-image: url('../images/hero-reception.png');
+    /* New reception background */
     background-size: cover;
-    background-position: center right;
+    background-position: center;
     background-attachment: fixed;
     height: 100vh;
     display: flex;
@@ -121,13 +148,11 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.85) 100%);
     z-index: 1;
 }
 
-#hero h1,
-#hero p,
-#hero .cta-button {
+.hero-content {
     position: relative;
     z-index: 2;
 }
@@ -136,6 +161,7 @@ a:hover {
     font-size: 3.5em;
     margin-bottom: 15px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    color: var(--color-secondary);
 }
 
 #hero p {
@@ -148,8 +174,10 @@ a:hover {
 .cta-button {
     display: inline-block;
     padding: 12px 30px;
-    background-color: var(--color-secondary); /* Gold background */
-    color: var(--color-primary); /* Black text on gold */
+    background-color: var(--color-secondary);
+    /* Gold background */
+    color: var(--color-primary);
+    /* Black text on gold */
     text-transform: uppercase;
     font-weight: bold;
     border: 2px solid var(--color-secondary);
@@ -159,9 +187,11 @@ a:hover {
 }
 
 .cta-button:hover {
-    background-color: transparent; 
-    color: var(--color-secondary); /* Gold border, gold text on hover */
+    background-color: transparent;
+    color: var(--color-secondary);
+    /* Gold border, gold text on hover */
 }
+
 /* --- 3. Featured Products/Collections Styling --- */
 #featured-products {
     padding: 80px 5%;
@@ -190,41 +220,43 @@ a:hover {
 /* Grid Layout for Products (3 columns on desktop) */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsive grid */
     gap: 30px;
 }
 
 /* Styling for an individual Product Card (We'll add the HTML content soon) */
 .product-card {
-    background-color: #0d0d0d; /* Slightly lighter black for contrast */
-    border: 1px solid rgba(255, 215, 0, 0.1);
-    padding: 20px;
-    text-align: left;
-    transition: transform 0.3s, box-shadow 0.3s;
-    overflow: hidden;
+    background-color: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15); /* Subtle gold glow on hover */
+    border-color: var(--color-secondary);
 }
 
 .product-card img {
     width: 100%;
-    height: auto;
     display: block;
     margin-bottom: 15px;
 }
 
 .product-card h3 {
     font-size: 1.4em;
-    color: var(--color-accent); /* Product title in white */
+    color: var(--color-accent);
+    /* Product title in white */
     margin-bottom: 5px;
 }
 
 .product-card p.price {
     font-size: 1.2em;
-    color: var(--color-secondary); /* Price in Gold */
+    color: var(--color-secondary);
+    /* Price in Gold */
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -234,7 +266,8 @@ a:hover {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: var(--color-royal-blue); /* Using Royal Blue accent */
+    background-color: var(--color-royal-blue);
+    /* Using Royal Blue accent */
     color: var(--color-accent);
     text-align: center;
     text-transform: uppercase;
@@ -245,16 +278,19 @@ a:hover {
 }
 
 .product-card .quick-view-btn:hover {
-    background-color: var(--color-secondary); /* Gold on hover */
+    background-color: var(--color-secondary);
+    /* Gold on hover */
     color: var(--color-primary);
 }
+
 /* --- 4. Bespoke Process/Callout Styling --- */
 #bespoke-callout {
-    background-color: #1a1a1a; /* Dark gray for a slight contrast from pure black */
+    background-color: #1a1a1a;
+    /* Dark gray for a slight contrast from pure black */
     padding: 100px 5%;
     text-align: center;
-    border-top: 1px solid rgba(255, 215, 0, 0.2); 
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2); 
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 #bespoke-callout h2 {
@@ -273,7 +309,8 @@ a:hover {
 .secondary-button {
     display: inline-block;
     padding: 10px 25px;
-    background-color: var(--color-royal-blue); /* Royal Blue accent */
+    background-color: var(--color-royal-blue);
+    /* Royal Blue accent */
     color: var(--color-accent);
     text-transform: uppercase;
     font-weight: bold;
@@ -284,12 +321,167 @@ a:hover {
 }
 
 .secondary-button:hover {
-    background-color: var(--color-accent); /* White background on hover */
-    color: var(--color-primary); /* Black text on hover */
+    background-color: var(--color-accent);
+    /* White background on hover */
+    color: var(--color-primary);
+    /* Black text on hover */
     border-color: var(--color-accent);
 }
 
-/* --- 5. Latest Insights (Blog Section Structure) --- */
+/* --- 5. Testimonial Section & Marquee Animation --- */
+.testimonial-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+}
+
+.testimonial-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.testimonial-card {
+    width: 400px;
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    padding: 30px;
+    margin: 0 15px;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-card:hover {
+    border-color: var(--color-secondary);
+    transform: translateY(-5px);
+}
+
+.testimonial-card i {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.testimonial-card p {
+    color: #eee;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.client-info {
+    border-top: 1px solid #222;
+    padding-top: 20px;
+}
+
+.client-info strong {
+    display: block;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.client-info span {
+    color: #666;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- 6. Masters Behind the Craft (Team Section) --- */
+.masters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.master-card {
+    background: #080808;
+    border: 1px solid #111;
+    padding: 40px 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.master-card:hover {
+    border-color: #FFD700;
+    transform: translateY(-10px);
+    background: #0d0d0d;
+}
+
+.master-image-frame {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #FFD700;
+    padding: 5px;
+}
+
+.master-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.master-symbol {
+    width: 80px;
+    height: 80px;
+    margin: 60px auto 90px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px dashed #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.master-symbol i {
+    color: #FFD700;
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.master-info h3 {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.master-info p {
+    color: #FFD700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* --- 7. Latest Insights (Blog Section Structure) --- */
 #latest-insights {
     padding: 80px 5%;
     text-align: center;
@@ -316,13 +508,13 @@ a:hover {
 
 .insights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
     text-align: left;
 }
 
 .insight-card {
-    background-color: #0d0d0d; 
+    background-color: #0d0d0d;
     border: 1px solid rgba(255, 215, 0, 0.1);
     padding: 12px;
     transition: box-shadow 0.3s;
@@ -348,13 +540,15 @@ a:hover {
     color: var(--color-royal-blue);
     font-weight: bold;
 }
+
 /* --- 6. Footer Styling --- */
 #main-footer {
     background-color: #0d0d0d;
     color: #ccc;
     padding: 60px 5% 20px 5%;
     font-size: 0.9em;
-    border-top: 3px solid var(--color-secondary); /* Strong Gold separator */
+    border-top: 3px solid var(--color-secondary);
+    /* Strong Gold separator */
 }
 
 .footer-links {
@@ -404,26 +598,29 @@ a:hover {
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 /* ====================================
    7. MEDIA QUERIES (Mobile/Tablet Adjustments)
    ==================================== */
 
 /* --- Tablet Devices (Max width 1024px) --- */
 @media (max-width: 1024px) {
-    
+
     /* Header/Navigation */
     #main-nav {
-        display: none; /* Hide standard nav bar on smaller screens */
+        display: none;
+        /* Hide standard nav bar on smaller screens */
     }
 
     /* Hero Section Adjustments */
     #hero h1 {
         font-size: 2.8em;
     }
-    
+
     /* Grid Layouts */
     /* Forces the product/insights grid to show 2 items per row on tablets */
-    .grid-layout, .insights-grid {
+    .grid-layout,
+    .insights-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 20px;
     }
@@ -441,7 +638,8 @@ a:hover {
     /* Header/Navigation */
     #main-header {
         padding: 15px 5%;
-        border-bottom: none; /* Remove subtle gold line for cleaner mobile header */
+        border-bottom: none;
+        /* Remove subtle gold line for cleaner mobile header */
         flex-wrap: wrap;
     }
 
@@ -491,9 +689,10 @@ a:hover {
 
     /* Hero Section Adjustments */
     #hero {
-        height: 80vh; /* Shorter hero section on mobile */
+        height: 80vh;
+        /* Shorter hero section on mobile */
     }
-    
+
     #hero h1 {
         font-size: 2em;
     }
@@ -503,19 +702,36 @@ a:hover {
     }
 
     /* Section Padding */
-    #featured-products, #latest-insights, #bespoke-callout {
-        padding: 50px 5%; /* Less vertical padding */
+    #featured-products,
+    #latest-insights,
+    #bespoke-callout {
+        padding: 50px 5%;
+        /* Less vertical padding */
     }
 
     /* Grid Layouts */
     /* Forces the product/insights grid to show 1 item per row on phones */
-    .grid-layout, .insights-grid {
+    .grid-layout,
+    .insights-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Font Adjusments for Mobile */
+    h1 {
+        font-size: 2.2em !important;
+    }
+    
+    h2 {
+        font-size: 1.8em !important;
+    }
+    
+    .process-steps h2, .order-summary-box h2, .checkout-forms h1 {
+        font-size: 1.5em !important;
     }
 
     /* Footer Adjustment */
     .footer-links {
-        grid-template-columns: 1fr; /* Stack footer columns vertically */
+        grid-template-columns: 1fr;
         text-align: center;
     }
 
@@ -523,25 +739,45 @@ a:hover {
         margin-top: 20px;
         margin-bottom: 10px;
     }
-    
+
     .footer-col ul {
         padding: 0;
     }
-    
-    /* Mobile Menu Display */
+
     #main-nav.active {
-        display: block; /* Overrides 'display: none' from the tablet query */
+        display: block;
         position: absolute;
-        top: 65px; /* Position it right below the header */
+        top: 65px;
         left: 0;
         width: 100%;
-        background-color: var(--color-primary); /* Use deep black background */
+        background-color: var(--color-primary);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
         padding: 10px 0;
     }
 
+    /* Additional UI Mobile Fixes */
+    .testimonial-card {
+        width: 85vw;
+        max-width: 350px;
+        margin: 0 10px;
+    }
+
+    #product-listing, #product-detail-section, #cart-section, #checkout-details-section, .story-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .detail-container, .contact-container, .cart-container, .checkout-container {
+        gap: 20px;
+    }
+    
+    .search-box input, .sort-box select {
+        width: 100%;
+    }
+    
     #main-nav.active ul {
-        flex-direction: column; /* Stack the links vertically */
+        flex-direction: column;
+        /* Stack the links vertically */
         text-align: center;
     }
 
@@ -549,19 +785,21 @@ a:hover {
         margin: 10px 0;
     }
 }
+
 /* ====================================
    8. SHOP PAGE SPECIFIC STYLING
    ==================================== */
 
 #shop-hero {
     /* Uses the same styling principles as the main #hero, but shorter */
-    height: 30vh; 
+    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px; 
-    background-color: var(--color-primary); /* Use deep black */
+    padding-top: 60px;
+    background-color: var(--color-primary);
+    /* Use deep black */
 }
 
 #shop-hero h1 {
@@ -625,10 +863,21 @@ a:hover {
     transition: border-color 0.2s;
 }
 
-.color-swatch.black { background-color: #000; }
-.color-swatch.blue { background-color: var(--color-royal-blue); }
-.color-swatch.gray { background-color: #555; }
-.color-swatch.gold { background-color: var(--color-secondary); }
+.color-swatch.black {
+    background-color: #000;
+}
+
+.color-swatch.blue {
+    background-color: var(--color-royal-blue);
+}
+
+.color-swatch.gray {
+    background-color: #555;
+}
+
+.color-swatch.gold {
+    background-color: var(--color-secondary);
+}
 
 .color-swatch:hover {
     border-color: var(--color-secondary);
@@ -715,11 +964,12 @@ a:hover {
 
 /* --- Mobile Adjustments for Shop Page --- */
 @media (max-width: 900px) {
+
     /* Stack the sidebar and the product grid vertically */
     #product-listing .container {
         flex-direction: column;
     }
-    
+
     /* Hide the desktop sidebar on mobile */
     #shop-sidebar {
         display: none;
@@ -767,26 +1017,39 @@ a:hover {
 }
 
 .mobile-filter-menu .filter-group ul li a {
-    color: var(--color-accent);
-    font-size: 1em;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: block;
+    padding: 5px 0;
 }
 
-.mobile-filter-menu .filter-group ul li a:hover {
+.filter-group ul li a:hover {
     color: var(--color-secondary);
+    padding-left: 5px;
 }
+
+.filter-group ul li a.active {
+    color: var(--color-secondary);
+    font-weight: bold;
+    border-left: 2px solid var(--color-secondary);
+    padding-left: 10px;
+}
+
 /* ====================================
    9. CONTACT PAGE SPECIFIC STYLING
    ==================================== */
 
 #contact-hero {
     background-color: #0d0d0d;
-    height: 40vh; 
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px; 
+    padding-top: 60px;
 }
 
 #contact-hero h1 {
@@ -810,12 +1073,14 @@ a:hover {
     margin: 0 auto;
 }
 
-.contact-form-area, .info-map-area {
+.contact-form-area,
+.info-map-area {
     flex: 1;
 }
 
 /* Form Styling */
-.contact-form-area h2, .info-map-area h2 {
+.contact-form-area h2,
+.info-map-area h2 {
     color: var(--color-secondary);
     font-size: 2em;
     margin-bottom: 25px;
@@ -884,6 +1149,7 @@ a:hover {
         flex-direction: column;
     }
 }
+
 /* ====================================
    10. BESPOKE PAGE SPECIFIC STYLING
    ==================================== */
@@ -891,13 +1157,13 @@ a:hover {
 #bespoke-hero {
     /* Similar to contact hero, setting a professional tone */
     background-color: #0d0d0d;
-    height: 40vh; 
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px; 
+    padding-top: 60px;
 }
 
 #bespoke-hero h1 {
@@ -920,17 +1186,21 @@ a:hover {
 
 .bespoke-image {
     flex: 1;
-    height: 450px; /* Adjusted height for your pic.png */
+    height: 450px;
+    /* Adjusted height for your pic.png */
     background-color: #1a1a1a;
-    border: 3px solid var(--color-secondary); /* Gold border for luxury */
-    overflow: hidden; /* Ensures the image doesn't bleed over the border */
+    border: 3px solid var(--color-secondary);
+    /* Gold border for luxury */
+    overflow: hidden;
+    /* Ensures the image doesn't bleed over the border */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .bespoke-content h2 {
-    color: var(--color-accent); /* White heading here */
+    color: var(--color-accent);
+    /* White heading here */
     font-size: 2.2em;
     margin-bottom: 20px;
 }
@@ -944,7 +1214,8 @@ a:hover {
 /* Bespoke Process Section */
 #bespoke-process {
     padding: 80px 5%;
-    background-color: #1a1a1a; /* Dark gray background for contrast */
+    background-color: #1a1a1a;
+    /* Dark gray background for contrast */
     text-align: center;
 }
 
@@ -957,7 +1228,8 @@ a:hover {
     display: flex;
     gap: 30px;
     justify-content: center;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
 }
 
 .step-card {
@@ -974,8 +1246,10 @@ a:hover {
     width: 50px;
     height: 50px;
     line-height: 50px;
-    background-color: var(--color-secondary); /* Gold circle */
-    color: var(--color-primary); /* Black number */
+    background-color: var(--color-secondary);
+    /* Gold circle */
+    color: var(--color-primary);
+    /* Black number */
     border-radius: 50%;
     font-size: 1.8em;
     font-weight: bold;
@@ -997,15 +1271,17 @@ a:hover {
     #bespoke-intro {
         flex-direction: column;
     }
-    
+
     .bespoke-image {
-        order: -1; /* Move image above text on mobile */
+        order: -1;
+        /* Move image above text on mobile */
         margin-bottom: 30px;
         height: 250px;
     }
 
     .process-steps {
-        flex-direction: column; /* Stack the steps vertically on mobile */
+        flex-direction: column;
+        /* Stack the steps vertically on mobile */
         align-items: center;
     }
 
@@ -1014,6 +1290,7 @@ a:hover {
         width: 100%;
     }
 }
+
 /* ====================================
    11. ABOUT US PAGE SPECIFIC STYLING
    ==================================== */
@@ -1021,13 +1298,13 @@ a:hover {
 #about-hero {
     /* Uses similar styling to other hero sections */
     background-color: #0d0d0d;
-    height: 40vh; 
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px; 
+    padding-top: 60px;
 }
 
 #about-hero h1 {
@@ -1041,11 +1318,13 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 50px;
-    background-color: var(--color-primary); /* FIX: Ensure base is black */
+    background-color: var(--color-primary);
+    /* FIX: Ensure base is black */
 }
 
 .story-section:nth-child(odd) {
-    background-color: #1a1a1a; /* Alternating background for visual interest */
+    background-color: #1a1a1a;
+    /* Alternating background for visual interest */
 }
 
 .story-content {
@@ -1095,7 +1374,8 @@ a:hover {
 #value-prop {
     padding: 80px 5%;
     text-align: center;
-    background-color: var(--color-primary); /* FIX: Ensure this section is black */
+    background-color: var(--color-primary);
+    /* FIX: Ensure this section is black */
 }
 
 #value-prop h2 {
@@ -1113,7 +1393,8 @@ a:hover {
     max-width: 350px;
     background-color: #0d0d0d;
     padding: 30px;
-    border-top: 5px solid var(--color-royal-blue); /* Subtle royal blue accent */
+    border-top: 5px solid var(--color-royal-blue);
+    /* Subtle royal blue accent */
     text-align: left;
 }
 
@@ -1134,11 +1415,13 @@ a:hover {
     }
 
     .story-section.right-image {
-        flex-direction: column; /* Resetting the reverse order for mobile */
+        flex-direction: column;
+        /* Resetting the reverse order for mobile */
     }
 
     .value-cards {
-        flex-direction: column; /* Stack cards vertically */
+        flex-direction: column;
+        /* Stack cards vertically */
         align-items: center;
     }
 
@@ -1147,6 +1430,7 @@ a:hover {
         width: 100%;
     }
 }
+
 /* ====================================
    12. PRODUCT DETAIL PAGE STYLING
    ==================================== */
@@ -1244,11 +1528,13 @@ a:hover {
     background-color: #1a1a1a;
     color: var(--color-accent);
     border-radius: 5px;
-    appearance: none; /* Removes default OS styling for select/number */
+    appearance: none;
+    /* Removes default OS styling for select/number */
 }
 
 .quantity-input input[type="number"] {
-    width: 80px; /* Smaller width for quantity */
+    width: 80px;
+    /* Smaller width for quantity */
     text-align: center;
 }
 
@@ -1278,7 +1564,7 @@ a:hover {
     /* Initially hidden via JavaScript, shown here for structure */
     padding: 15px 0;
     color: #ccc;
-    display: none; 
+    display: none;
 }
 
 /* --- Related Products Section --- */
@@ -1300,14 +1586,18 @@ a:hover {
         flex-direction: column;
     }
 
-    .product-gallery, .product-info {
-        flex: auto; /* Allow both columns to take full width */
+    .product-gallery,
+    .product-info {
+        flex: auto;
+        /* Allow both columns to take full width */
     }
 
     .product-gallery {
-        order: -1; /* Place image at the top */
+        order: -1;
+        /* Place image at the top */
     }
 }
+
 /* ====================================
    13. CART/CHECKOUT PAGE STYLING
    ==================================== */
@@ -1418,7 +1708,8 @@ a:hover {
     background-color: #0d0d0d;
     padding: 30px;
     border: 1px solid rgba(255, 215, 0, 0.2);
-    height: fit-content; /* Ensure box doesn't stretch */
+    height: fit-content;
+    /* Ensure box doesn't stretch */
 }
 
 .order-summary-box h2 {
@@ -1472,32 +1763,38 @@ a:hover {
     .cart-container {
         flex-direction: column;
     }
-    
+
     .order-summary-box {
-        order: -1; /* Move the summary box to the top on mobile */
+        order: -1;
+        /* Move the summary box to the top on mobile */
     }
 
     .cart-item {
-        flex-wrap: wrap; /* Wrap elements on small screens */
+        flex-wrap: wrap;
+        /* Wrap elements on small screens */
     }
-    
+
     .item-details {
-        flex-basis: 100%; /* Details take full width under the image */
+        flex-basis: 100%;
+        /* Details take full width under the image */
     }
-    
-    .item-quantity, .item-subtotal, .remove-item-btn {
+
+    .item-quantity,
+    .item-subtotal,
+    .remove-item-btn {
         margin-left: auto;
         flex-basis: auto;
     }
-    
+
     .item-quantity {
         order: 3;
     }
-    
+
     .item-subtotal {
         order: 4;
     }
 }
+
 /* ====================================
    14. CHECKOUT DETAILS STYLING
    ==================================== */
@@ -1580,7 +1877,7 @@ a:hover {
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.1em;
-    color: #666; 
+    color: #666;
 }
 
 .checkout-progress strong {
@@ -1608,22 +1905,24 @@ a:hover {
         width: 100%;
         margin-bottom: 30px;
     }
-    
+
     .form-group-half {
         flex-direction: column;
         gap: 0;
     }
-    
+
     .checkout-actions {
         flex-direction: column;
         gap: 15px;
     }
 
-    .back-to-cart, .proceed-to-payment {
+    .back-to-cart,
+    .proceed-to-payment {
         width: 100%;
         text-align: center;
     }
 }
+
 /* ====================================
    15. CHECKOUT PAYMENT STYLING
    ==================================== */
@@ -1663,7 +1962,7 @@ a:hover {
 .payment-option input[type="radio"] {
     margin-right: 15px;
     /* Custom styling for radio button */
-    accent-color: var(--color-secondary); 
+    accent-color: var(--color-secondary);
     width: 18px;
     height: 18px;
 }
@@ -1725,6 +2024,7 @@ a:hover {
     font-size: 0.9em;
     margin-top: 5px;
 }
+
 /* ====================================
    16. ORDER CONFIRMATION PAGE STYLING
    ==================================== */
@@ -1734,7 +2034,8 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* Ensure it takes up most of the viewport height */
+    min-height: 80vh;
+    /* Ensure it takes up most of the viewport height */
 }
 
 .confirmation-box {
@@ -1742,7 +2043,8 @@ a:hover {
     padding: 50px;
     max-width: 600px;
     text-align: center;
-    border: 3px solid var(--color-secondary); /* Bold gold border for celebration */
+    border: 3px solid var(--color-secondary);
+    /* Bold gold border for celebration */
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
@@ -1845,6 +2147,7 @@ a:hover {
         border-width: 2px;
     }
 }
+
 /* Floating Cart Button */
 #floating-cart {
     position: fixed;
@@ -1858,14 +2161,16 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
-#floating-cart:hover { transform: scale(1.1); }
+#floating-cart:hover {
+    transform: scale(1.1);
+}
 
 #cart-count {
     position: absolute;
@@ -1878,6 +2183,7 @@ a:hover {
     font-size: 0.8rem;
     font-weight: bold;
 }
+
 /* Optimized Mobile-First Grid */
 #product-grid {
     display: grid;
@@ -1889,8 +2195,10 @@ a:hover {
 /* Fix for large/inconsistent images */
 .product-card img {
     width: 100%;
-    height: 280px; /* Fixed height for desktop */
-    object-fit: cover; /* Crops image perfectly to fit the box */
+    height: 280px;
+    /* Fixed height for desktop */
+    object-fit: cover;
+    /* Crops image perfectly to fit the box */
     border-bottom: 1px solid #1a1a1a;
 }
 
@@ -1908,13 +2216,17 @@ a:hover {
 /* Mobile Adjustments (Phones) */
 @media (max-width: 768px) {
     #product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* 2 items per row */
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        /* 2 items per row */
         gap: 10px;
     }
+
     .product-card img {
-        height: 200px; /* Smaller images for mobile */
+        height: 200px;
+        /* Smaller images for mobile */
     }
 }
+
 /* Search Bar Styling */
 .search-container {
     margin-bottom: 30px;
@@ -1940,6 +2252,7 @@ a:hover {
 
 @media (max-width: 768px) {
     .search-container {
-        margin-top: 20px; /* Space it out on mobile */
+        margin-top: 20px;
+        /* Space it out on mobile */
     }
 }
