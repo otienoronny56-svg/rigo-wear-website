@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIGO Command Center</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -139,7 +140,8 @@
 
         <button class="nav-btn" onclick="showView('orders')">👤 Client Orders</button>
         <button class="nav-btn" onclick="showView('home-sections')">🏠 Home Page CMS</button>
-        <button id="admin-logout" class="nav-btn" style="margin-top: auto; color: red;">Logout</button>
+        <a href="admin-guide.html" class="nav-btn" style="text-decoration: none; display: block; margin-top: auto; margin-bottom: 20px; border: 1px dashed #FFD700; color: #FFD700; text-align: center;"><i class="fas fa-book"></i> Read Admin Manual</a>
+        <button id="admin-logout" class="nav-btn" style="color: red;">Logout</button>
     </aside>
 
     <main class="content-area">
@@ -161,7 +163,7 @@
             </div>
         </div>
 
-        <section id="view-home-sections" class="view-section active">
+        <section id="view-home-sections" class="view-section">
             <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 30px; border: 1px solid #FFD700; border-radius: 12px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <h2 style="color: #FFD700; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 1.8rem; letter-spacing: 1px;">
                     <i class="fas fa-pen-nib"></i> CREATE MASTERPIECE BLOG
@@ -251,10 +253,13 @@
             <p id="media-loading" style="color:#999;text-align:center;padding:40px;">Loading images from Supabase Storage...</p>
         </section>
 
-        <section id="view-inventory" class="view-section">
+        <section id="view-inventory" class="view-section active">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2 style="margin: 0;">📦 Manage Inventory</h2>
-                <input type="text" id="inventory-search" placeholder="🔍 Search products..." style="padding: 10px; width: 250px; background: #1a1a1a; border: 1px solid #FFD700; color: #fff; border-radius: 3px;">
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="inventory-search" placeholder="🔍 Search products..." style="padding: 10px; width: 250px; background: #1a1a1a; border: 1px solid #FFD700; color: #fff; border-radius: 3px;">
+                    <button onclick="openAddProductModal()" class="cta-button" style="padding: 10px 15px; width: auto;"><i class="fas fa-plus"></i> Add Product</button>
+                </div>
             </div>
             
             <div style="overflow-x: auto; background: #0d0d0d; border-radius: 8px; border: 1px solid #333;">
@@ -287,7 +292,8 @@
             <div class="modal-content" style="max-width:560px; margin:0 auto; background:#111; border:1px solid #FFD700; border-radius:8px; padding:30px; position:relative;">
                 <button onclick="closeMediaModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#FFD700;font-size:1.4rem;cursor:pointer;">✕</button>
                 <img id="modal-preview" src="" style="width:100%;height:220px;object-fit:cover;border-radius:5px;margin-bottom:18px;border:1px solid #333;">
-                <h3 style="color:#FFD700;margin:0 0 16px;">Create Product from this Image</h3>
+                <button type="button" id="modal-choose-img-btn" onclick="openMediaPicker('product')" class="action-btn" style="width: 100%; padding: 12px; margin-bottom: 15px; display: none;">🖼️ Choose Image from Gallery</button>
+                <h3 style="color:#FFD700;margin:0 0 16px;">Create Product</h3>
                 <input type="text" id="ml-name" placeholder="Suit / Product Name" style="width:100%;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;margin-bottom:10px;box-sizing:border-box;">
                 <div style="display:flex;gap:10px;margin-bottom:10px;">
                     <input type="number" id="ml-price" placeholder="Original Price (KES)" style="flex:1;padding:11px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:4px;">

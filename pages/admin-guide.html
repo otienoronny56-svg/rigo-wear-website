@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal Guide | RIGO WEAR</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #050505;
+            color: #ccc;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .guide-header h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .section-block {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .section-block:hover {
+            border-color: #FFD700;
+        }
+
+        .section-block h2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #FFD700;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #333;
+        }
+
+        .section-block h3 {
+            color: #fff;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+        }
+
+        .step-list {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .step-list li {
+            margin-bottom: 12px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 4px solid #FFD700;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .pro-tip {
+            font-weight: bold;
+            color: #FFD700;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .action-icon {
+            display: inline-block;
+            background: #111;
+            border: 1px solid #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #FFD700;
+            margin: 0 5px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .guide-header h1 {
+                font-size: 2em;
+            }
+            .section-block {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="guide-header">
+        <a href="admin.html" style="color: #FFD700; text-decoration: none; font-size: 1.2em; display: inline-block; margin-bottom: 20px;">
+            <i class="fas fa-arrow-left"></i> Back to Command Center
+        </a>
+        <h1><i class="fas fa-book"></i> RIGO WEAR ADMIN MANUAL</h1>
+        <p style="font-size: 1.1em;">The complete guide to managing your luxury tailor CMS.</p>
+    </header>
+
+    <div class="guide-container">
+
+        <!-- 1. The Media Library -->
+        <div class="section-block" id="media-library">
+            <h2><i class="fas fa-images"></i> 1. The Media Library</h2>
+            <p>The Media Library is the heart of your product creation process. All images must be securely uploaded to the Supabase Cloud Storage before they can be assigned to suits or blogs.</p>
+            
+            <h3>How to Upload Images</h3>
+            <ul class="step-list">
+                <li>Navigate to the <strong>Media Library</strong> tab in the sidebar.</li>
+                <li>Click the large dashed upload zone, or <strong>Drag and Drop</strong> images from your computer directly into the box.</li>
+                <li>Wait for the <strong>Uploading...</strong> progress tracker to turn green for each file.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <span class="pro-tip">PRO TIP:</span>
+                Compress your images before uploading! Huge files make the website load slowly for your customers. Aim for files around 500KB to 1MB max.
+            </div>
+
+            <h3>Creating a Product from an Image</h3>
+            <p>To swiftly create a new inventory item:</p>
+            <ul class="step-list">
+                <li>Click on any image sitting inside the Media Library grid.</li>
+                <li>A golden modal will pop up. Enter the <strong>Product Name, Pricing, Category, and Description</strong>.</li>
+                <li>Hit save, and the product instantly goes live on your shopping page!</li>
+            </ul>
+        </div>
+
+        <!-- 2. Managing Inventory -->
+        <div class="section-block" id="manage-inventory">
+            <h2><i class="fas fa-box-open"></i> 2. Managing Inventory</h2>
+            <p>The Inventory table gives you a bird's-eye view of everything you are selling, letting you perform quick adjustments in real-time.</p>
+
+            <h3>Editing Existing Products</h3>
+            <ul class="step-list">
+                <li>Locate the product row in the table (use the Search Bar if needed).</li>
+                <li>Click the <span class="action-icon">✏️</span> Pencil Button in the <em>Actions</em> column.</li>
+                <li>The Edit Modal will appear over the screen. Update the Category, Name, Prices, or Description, then click <strong>Save Changes</strong>.</li>
+            </ul>
+
+            <h3>Quick Price Changes</h3>
+            <p>You don't need to open the modal for a simple price change! Just type the new price into the input box on the table row and click the <span class="action-icon">💾</span> Floppy Disk Button to lock it in.</p>
+
+            <h3>Stock Statuses</h3>
+            <p>Is an item out of fabric? Simply click the green <span style="background: #28a745; color: white; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8em;">In Stock</span> badge. It will instantly flip to a red <strong>Out of Stock</strong> badge, alerting your customers.</p>
+        </div>
+
+        <!-- 3. The Signature Collection -->
+        <div class="section-block" id="signature-collection">
+            <h2><i class="fas fa-star"></i> 3. The Signature Collection</h2>
+            <p>The "Signature Collection" on the front page of your website highlights your most premium or best-selling garments. You control what appears here.</p>
+
+            <h3>Featuring a Product</h3>
+            <ul class="step-list">
+                <li>In the Manage Inventory tab, find the <span class="action-icon">⭐</span> Star Button under the Actions column.</li>
+                <li>If the Star is <strong style="color: #FFD700;">Golden Filled</strong>, it is actively featured on the Home Page!</li>
+                <li>If the Star is an <strong>Empty Outline</strong>, it is just a normal shop item. Click it to instantly promote it to Signature status.</li>
+            </ul>
+        </div>
+
+        <!-- 4. Home Page CMS / Blogging -->
+        <div class="section-block" id="blogging">
+            <h2><i class="fas fa-pen-nib"></i> 4. Editorials & Insights</h2>
+            <p>The "Home Page CMS" tab allows you to write luxury editorial posts that appear at the bottom of the home page under "Latest Insights".</p>
+
+            <h3>Creating an Article</h3>
+            <ul class="step-list">
+                <li>Fill out the <strong>Title</strong> and the bold <strong>Author Name</strong>.</li>
+                <li>Write a spicy <strong>Short Preview</strong> (this goes on the home page card) and the full <strong>Main Story Content</strong> (what they read when they click).</li>
+                <li>Click the <span class="action-icon">🖼️ Choose from Gallery</span> button. This opens a mini version of your Media Library! Click any image to set it as the article's cover photo.</li>
+                <li>Hit <strong>Publish to Website</strong> to broadcast your thoughts.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <span class="pro-tip">PRO TIP:</span>
+                Your published blogs will appear at the bottom of the Home Page CMS tab. You can click the Trash Can icon there to delete old articles.
+            </div>
+        </div>
+
+        <!-- 5. Client Orders -->
+        <div class="section-block" id="client-orders">
+            <h2><i class="fas fa-users"></i> 5. Client Orders</h2>
+            <p>The system automatically captures orders when customers click "Checkout on WhatsApp" or complete transactions. Details regarding their requested fit, fabrics, and quantities are tracked here so you never lose contact strings.</p>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; padding: 40px; color: #666; font-size: 0.9em; border-top: 1px solid #1a1a1a;">
+        <p>&copy; RIGO WEAR Administration Protocol.</p>
+    </footer>
+
+</body>
+</html>

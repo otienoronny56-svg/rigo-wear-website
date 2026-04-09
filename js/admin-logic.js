@@ -432,9 +432,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // =============================================
-// MEDIA PICKER — Restored for Blogs
+// MEDIA PICKER
 // =============================================
-window.openMediaPicker = async () => {
+window.openMediaPicker = async (target = 'blog') => {
     const modal = document.getElementById('media-picker-modal');
     const grid = document.getElementById('picker-grid');
     const loading = document.getElementById('picker-loading');
@@ -457,7 +457,7 @@ window.openMediaPicker = async () => {
             .map(f => {
                 const { data } = client.storage.from('product-images').getPublicUrl(`product-suits/${f.name}`);
                 return `
-                    <div onclick="selectImageForBlog('${data.publicUrl}')" style="cursor:pointer;border:1px solid #333;border-radius:5px;overflow:hidden;background:#0d0d0d;transition:0.2s;" onmouseover="this.style.borderColor='#FFD700'">
+                    <div onclick="selectMediaImage('${data.publicUrl}', '${target}')" style="cursor:pointer;border:1px solid #333;border-radius:5px;overflow:hidden;background:#0d0d0d;transition:0.2s;" onmouseover="this.style.borderColor='#FFD700'">
                         <img src="${data.publicUrl}" style="width:100%;height:100px;object-fit:cover;">
                     </div>
                 `;
@@ -469,18 +469,23 @@ window.openMediaPicker = async () => {
 
 window.closeMediaPicker = () => {
     document.getElementById('media-picker-modal').style.display = 'none';
-    document.body.style.overflow = '';
+    /* Only reset body overflow if media-modal is not open */
+    if (document.getElementById('media-modal').style.display === 'none') {
+        document.body.style.overflow = '';
+    }
 };
 
-window.selectImageForBlog = (url) => {
-    document.getElementById('ins-image-url').value = url;
-    document.getElementById('blog-preview-img').src = url;
-    document.getElementById('blog-preview-img').style.display = 'block';
-    document.getElementById('blog-preview-placeholder').style.display = 'none';
-    
-    // Clear file input if a library image is picked
-    document.getElementById('ins-image-file').value = '';
-    
+window.selectMediaImage = (url, target) => {
+    if (target === 'blog') {
+        document.getElementById('ins-image-url').value = url;
+        document.getElementById('blog-preview-img').src = url;
+        document.getElementById('blog-preview-img').style.display = 'block';
+        document.getElementById('blog-preview-placeholder').style.display = 'none';
+    } else {
+        selectedImageUrl = url;
+        document.getElementById('modal-preview').src = url;
+        document.getElementById('modal-preview').style.display = 'block';
+    }
     closeMediaPicker();
     showNotification('Cover image selected from library');
 };
@@ -588,12 +593,28 @@ async function loadMediaLibrary() {
     }
 }
 
+window.openAddProductModal = () => {
+    selectedImageUrl = '';
+    document.getElementById('modal-preview').style.display = 'none';
+    document.getElementById('modal-choose-img-btn').style.display = 'block';
+    document.getElementById('ml-name').value = '';
+    document.getElementById('ml-price').value = '';
+    document.getElementById('ml-offer').value = '';
+    document.getElementById('ml-desc').value = '';
+    document.getElementById('ml-featured').checked = false;
+    document.getElementById('ml-saving').style.display = 'none';
+    document.getElementById('media-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+};
+
 window.openMediaModal = (url, filename) => {
     selectedImageUrl = url;
     document.getElementById('modal-preview').src = url;
+    document.getElementById('modal-preview').style.display = 'block';
+    document.getElementById('modal-choose-img-btn').style.display = 'none';
     // Pre-fill name from filename (strip extension and underscores)
     const guessedName = filename.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
-    document.getElementById('ml-name').value = '';
+    document.getElementById('ml-name').value = guessedName;
     document.getElementById('ml-price').value = '';
     document.getElementById('ml-offer').value = '';
     document.getElementById('ml-desc').value = '';
@@ -615,6 +636,11 @@ window.saveProductFromMedia = async () => {
     const category = document.getElementById('ml-cat').value;
     const desc = document.getElementById('ml-desc').value.trim();
     const featured = document.getElementById('ml-featured').checked;
+
+    if (!selectedImageUrl) {
+        showNotification('Please select an image from the gallery first.', 'error');
+        return;
+    }
 
     if (!name || isNaN(price) || price <= 0) {
         showNotification('Please enter a product name and valid price.', 'error');
