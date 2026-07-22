@@ -2523,6 +2523,20 @@ a:hover {
         line-height: 1.5;
         margin-bottom: 15px;
     }
+
+    #shop-hero {
+        padding: 15px 5% 5px 5%;
+    }
+
+    #shop-hero h1 {
+        font-size: 1.5rem !important;
+        margin: 0;
+    }
+
+    .filter-actions {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
 }
 
 /* Search Bar Styling */
@@ -2550,7 +2564,7 @@ a:hover {
 
 @media (max-width: 768px) {
     .search-container {
-        margin-top: 20px;
-        /* Space it out on mobile */
+        margin-top: 0 !important;
+        margin-bottom: 15px;
     }
 }
