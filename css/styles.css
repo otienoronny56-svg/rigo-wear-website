@@ -2622,3 +2622,76 @@ a:hover {
         margin-bottom: 15px;
     }
 }
+
+/* --- Shop Controls & Mobile Category Filters --- */
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px !important;
+}
+
+.controls-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.category-box,
+.sort-box {
+    flex: 1;
+}
+
+.category-box select,
+.sort-box select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.category-box select:focus,
+.sort-box select:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+}
+
+.category-chips-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 0 6px 0;
+    scrollbar-width: none; /* Hide scrollbar for clean look */
+    -ms-overflow-style: none;
+}
+
+.category-chips-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.chip-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    color: #ccc;
+    font-size: 0.78rem;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+.chip-btn.active,
+.chip-btn:hover {
+    background: var(--color-secondary);
+    color: #000;
+    border-color: var(--color-secondary);
+    font-weight: bold;
+}

@@ -104,13 +104,37 @@
                             <input type="text" id="shop-search" placeholder="Search for Navy, Silk, etc..."
                                 onkeyup="handleSearch()">
                         </div>
-                        <div class="sort-box">
-                            <select id="sort-products" onchange="handleSort()">
-                                <option value="newest">Newest Arrivals</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="name">Alphabetical (A-Z)</option>
-                            </select>
+
+                        <!-- Dual Dropdowns Row -->
+                        <div class="controls-row">
+                            <div class="category-box">
+                                <select id="filter-category-select" onchange="filterByCategory(this.value)">
+                                    <option value="all">All Categories</option>
+                                    <option value="Men">Men's Suits</option>
+                                    <option value="Women">Women's Suits</option>
+                                    <option value="Ankaras">Ankaras & African</option>
+                                    <option value="Senator">Senator Suits</option>
+                                    <option value="Children">Children's Wear</option>
+                                </select>
+                            </div>
+                            <div class="sort-box">
+                                <select id="sort-products" onchange="handleSort()">
+                                    <option value="newest">Newest Arrivals</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="name">Alphabetical (A-Z)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Horizontal Scroll Category Chips Bar -->
+                        <div class="category-chips-scroll">
+                            <button class="chip-btn active" onclick="selectChip('all')">All</button>
+                            <button class="chip-btn" onclick="selectChip('Men')">Men's Suits</button>
+                            <button class="chip-btn" onclick="selectChip('Women')">Women's Suits</button>
+                            <button class="chip-btn" onclick="selectChip('Ankaras')">Ankaras & African</button>
+                            <button class="chip-btn" onclick="selectChip('Senator')">Senator Suits</button>
+                            <button class="chip-btn" onclick="selectChip('Children')">Children</button>
                         </div>
                     </div>
                     <div id="product-grid" class="shop-grid">

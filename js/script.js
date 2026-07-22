@@ -199,7 +199,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- 4b. The Filtering Function ---
+    window.selectChip = function (category) {
+        const select = document.getElementById('filter-category-select');
+        if (select) select.value = category;
+        window.filterByCategory(category);
+    };
+
     window.filterByCategory = function (category) {
+        // Sync category select if exists
+        const select = document.getElementById('filter-category-select');
+        if (select && select.value !== category) select.value = category;
+
+        // Sync category chips UI
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            const onclickAttr = btn.getAttribute('onclick') || '';
+            if (onclickAttr.includes(`'${category}'`)) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
         if (category === 'all') {
             renderProductGrid(window.allProducts);
         } else {
