@@ -92,56 +92,130 @@
             </div>
 
             <style>
-                .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-                .price-card { background: #080808; border: 1px solid #111; padding: 40px; text-align: center; transition: all 0.3s ease; }
-                .price-card:hover { border-color: #FFD700; transform: translateY(-10px); background: #0d0d0d; }
-                .price-card h3 { color: #FFD700; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
-                .price-card .cost { font-size: 2rem; color: #fff; font-weight: bold; margin-bottom: 20px; }
-                .price-card ul { list-style: none; padding: 0; color: #888; font-size: 0.95rem; line-height: 2; margin-bottom: 30px; }
-                .price-card .tier-tag { display: inline-block; padding: 5px 15px; border: 1px solid rgba(255,215,0,0.3); color: #FFD700; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
+                .pricing-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 30px;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .price-card {
+                    background: #080808;
+                    border: 1px solid rgba(255, 215, 0, 0.15);
+                    border-radius: 8px;
+                    padding: 35px 25px;
+                    text-align: center;
+                    transition: all 0.4s ease;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    position: relative;
+                }
+                .price-card:hover {
+                    border-color: #FFD700;
+                    transform: translateY(-8px);
+                    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.1);
+                    background: #0d0d0d;
+                }
+                .price-card .tier-tag {
+                    display: inline-block;
+                    padding: 5px 14px;
+                    border-radius: 20px;
+                    font-size: 0.68rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    margin: 0 auto 20px;
+                }
+                .price-card h3 {
+                    color: #fff;
+                    font-size: 1.4rem;
+                    margin-bottom: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                }
+                .price-card .cost {
+                    font-size: 1.7rem;
+                    color: #FFD700;
+                    font-weight: bold;
+                    margin-bottom: 25px;
+                }
+                .price-card ul {
+                    list-style: none;
+                    padding: 0;
+                    color: #ccc;
+                    font-size: 0.9rem;
+                    line-height: 2.2;
+                    margin-bottom: 30px;
+                    text-align: left;
+                }
+                .price-card ul li {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                .tier-btn {
+                    display: inline-block;
+                    width: 100%;
+                    padding: 12px 0;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: 0.82rem;
+                    font-weight: 600;
+                    letter-spacing: 2px;
+                    border-radius: 4px;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                }
             </style>
 
             <div class="pricing-grid">
                 <!-- Essential -->
                 <div class="price-card">
-                    <div class="tier-tag">Standard Collection</div>
-                    <h3>Essential Series</h3>
-                    <p class="cost">KES 8,000 - 12,000</p>
-                    <ul>
-                        <li>High-Quality Wool Blends</li>
-                        <li>Durable Performance Fabrics</li>
-                        <li>Classic Business Silhouettes</li>
-                        <li>Standard Lead Time (14 Days)</li>
-                    </ul>
-                    <a href="contact.html" class="cta-button" style="width: 100%;">Select Essential</a>
+                    <div>
+                        <div class="tier-tag" style="border: 1px solid rgba(255, 215, 0, 0.3); color: #FFD700; background: rgba(255, 215, 0, 0.05);">Standard Collection</div>
+                        <h3>Essential Series</h3>
+                        <p class="cost">KES 8,000 - 12,000</p>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> High-Quality Wool Blends</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Durable Performance Fabrics</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Classic Business Silhouettes</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Standard Lead Time (14 Days)</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="tier-btn" style="border: 1px solid #FFD700; color: #FFD700; background: transparent;">Select Essential</a>
                 </div>
 
                 <!-- Executive -->
-                <div class="price-card" style="border-color: rgba(65, 105, 225, 0.3);">
-                    <div class="tier-tag" style="color: #4169E1; border-color: rgba(65, 105, 225, 0.3);">Classic Executive</div>
-                    <h3>Executive Line</h3>
-                    <p class="cost" style="color: #fff;">KES 13,000 - 17,000</p>
-                    <ul>
-                        <li>Super 120s Italian Wools</li>
-                        <li>Half-Canvas Construction</li>
-                        <li>Breathable Natural Fibers</li>
-                        <li>Priority Fitting Schedule</li>
-                    </ul>
-                    <a href="contact.html" class="cta-button" style="width: 100%; border-color: #4169E1; color: #4169E1;">Select Executive</a>
+                <div class="price-card" style="border-color: rgba(65, 105, 225, 0.4);">
+                    <div>
+                        <div class="tier-tag" style="border: 1px solid rgba(65, 105, 225, 0.5); color: #4169E1; background: rgba(65, 105, 225, 0.1);">Classic Executive</div>
+                        <h3>Executive Line</h3>
+                        <p class="cost" style="color: #4169E1;">KES 13,000 - 17,000</p>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: #4169E1; font-size: 0.8rem;"></i> Super 120s Italian Wools</li>
+                            <li><i class="fas fa-check" style="color: #4169E1; font-size: 0.8rem;"></i> Half-Canvas Construction</li>
+                            <li><i class="fas fa-check" style="color: #4169E1; font-size: 0.8rem;"></i> Breathable Natural Fibers</li>
+                            <li><i class="fas fa-check" style="color: #4169E1; font-size: 0.8rem;"></i> Priority Fitting Schedule</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="tier-btn" style="border: 1px solid #4169E1; color: #4169E1; background: transparent;">Select Executive</a>
                 </div>
 
                 <!-- Signature -->
-                <div class="price-card" style="border-color: #FFD700; box-shadow: 0 10px 30px rgba(255,215,0,0.05);">
-                    <div class="tier-tag" style="background: #FFD700; color: #000;">Premium Masterpiece</div>
-                    <h3>Signature Series</h3>
-                    <p class="cost">KES 18,000 - &#8734;</p>
-                    <ul>
-                        <li>Super 150s+ Wools & Cashmere</li>
-                        <li>Full-Canvas Hand-Construction</li>
-                        <li>Rare Linings & Horn Buttons</li>
-                        <li>Lifetime Fit Warranty</li>
-                    </ul>
-                    <a href="contact.html" class="cta-button" style="width: 100%;">Select Signature</a>
+                <div class="price-card" style="border-color: #FFD700; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.08); background: #0a0a0a;">
+                    <div>
+                        <div class="tier-tag" style="background: #FFD700; color: #000; font-weight: bold;">Premium Masterpiece</div>
+                        <h3>Signature Series</h3>
+                        <p class="cost" style="color: #FFD700;">KES 18,000 - &#8734;</p>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Super 150s+ Wools & Cashmere</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Full-Canvas Hand-Construction</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Rare Linings & Horn Buttons</li>
+                            <li><i class="fas fa-check" style="color: #FFD700; font-size: 0.8rem;"></i> Lifetime Fit Warranty</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="tier-btn" style="background: #FFD700; color: #000;">Select Signature</a>
                 </div>
             </div>
         </section>
