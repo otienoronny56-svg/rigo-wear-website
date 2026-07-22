@@ -61,14 +61,12 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
-    position: fixed;
-    /* Sticky header for luxury feel */
+    position: sticky;
+    top: 0;
     width: 100%;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.9);
-    /* Slight transparency on black */
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.95);
     border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-    /* Subtle gold line */
 }
 
 .logo {
@@ -127,10 +125,10 @@ a:hover {
 /* --- 2. Hero Section Styling (Luxury Modern Left-Aligned View) --- */
 #hero {
     background: radial-gradient(circle at 15% 50%, rgba(255, 215, 0, 0.07) 0%, rgba(10, 10, 10, 1) 65%), #080808;
-    min-height: 90vh;
+    min-height: calc(100vh - 90px);
     display: flex;
     align-items: center;
-    padding-top: 120px; /* Increased to fully clear the fixed header */
+    padding: 40px 0;
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 215, 0, 0.15);
@@ -909,8 +907,7 @@ a:hover {
     }
 
     /* Grid Layouts */
-    /* Forces the product/insights grid to show 2 items per row on tablets */
-    .grid-layout,
+    /* Forces the insights grid to show 2 items per row on tablets */
     .insights-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 20px;
@@ -980,8 +977,8 @@ a:hover {
 
     /* Hero Section Adjustments */
     #hero {
-        height: 80vh;
-        /* Shorter hero section on mobile */
+        min-height: auto;
+        padding: 30px 0;
     }
 
     #hero h1 {
@@ -1001,8 +998,7 @@ a:hover {
     }
 
     /* Grid Layouts */
-    /* Forces the product/insights grid to show 1 item per row on phones */
-    .grid-layout,
+    /* Forces the insights grid to show 1 item per row on phones */
     .insights-grid {
         grid-template-columns: 1fr;
     }
