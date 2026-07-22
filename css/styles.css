@@ -439,9 +439,9 @@ a:hover {
 /* Grid Layout for Products (3 columns on desktop) */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 240px)); /* Forces max column width of 240px */
-    justify-content: center; /* Centers the grid if there's leftover space */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 240px)); /* 150px ensures 2 columns on mobile */
+    justify-content: center;
+    gap: 15px; /* Slightly tighter gap for mobile 2-column */
 }
 
 /* Styling for an individual Product Card (We'll add the HTML content soon) */
@@ -524,16 +524,14 @@ a:hover {
 }
 
 .product-card h3 {
-    font-size: 0.95rem;
-    color: #f0f0f0;
-    font-weight: 400;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: capitalize;
     margin-bottom: 5px;
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.3;
 }
 
 .price-wrapper {
@@ -545,28 +543,35 @@ a:hover {
 }
 
 .product-card p.price {
-    font-size: 0.95rem;
-    color: #ffffff;
+    font-size: 1rem;
+    color: var(--color-secondary);
     font-weight: 600;
 }
 
 .product-card p.price-original {
     text-decoration: line-through;
     color: #777;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
-/* Invisible overlay to make the whole card clickable like Fashion Nova */
+/* Elegant visible text link for viewing details */
 .product-card .quick-view-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 10;
-    cursor: pointer;
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-secondary);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card .quick-view-btn:hover {
+    color: var(--color-secondary);
 }
 
 /* --- 4. Bespoke Process/Callout Styling --- */
@@ -2494,14 +2499,9 @@ a:hover {
 /* Mobile Adjustments (Phones) */
 @media (max-width: 768px) {
     #product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         /* 2 items per row */
         gap: 10px;
-    }
-
-    .product-card img {
-        height: 200px;
-        /* Smaller images for mobile */
     }
 }
 
