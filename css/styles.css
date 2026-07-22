@@ -973,45 +973,62 @@ a:hover {
         transform: rotate(90deg);
     }
 
-    /* Hero Section Adjustments */
+    /* Hero Section Adjustments for Mobile */
     #hero {
         min-height: auto;
-        padding: 30px 0;
+        padding: 15px 0 10px 0;
+    }
+
+    .hero-container {
+        gap: 15px;
+    }
+
+    .hero-content {
+        padding: 10px 0 10px 15px;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
     }
 
     #hero h1 {
-        font-size: 2em;
+        font-size: 1.35rem !important;
+        line-height: 1.25;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
     }
 
     #hero p {
-        font-size: 1.1em;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .hero-actions {
+        gap: 10px;
     }
 
     /* Section Padding */
     #featured-products,
     #latest-insights,
     #bespoke-callout {
-        padding: 50px 5%;
-        /* Less vertical padding */
+        padding: 40px 5%;
     }
 
     /* Grid Layouts */
-    /* Forces the insights grid to show 1 item per row on phones */
     .insights-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Font Adjusments for Mobile */
-    h1 {
-        font-size: 2.2em !important;
-    }
-    
+    /* Font Adjustments for Mobile */
     h2 {
-        font-size: 1.8em !important;
+        font-size: 1.6em !important;
     }
     
     .process-steps h2, .order-summary-box h2, .checkout-forms h1 {
-        font-size: 1.5em !important;
+        font-size: 1.4em !important;
     }
 
     /* Footer Adjustment */
