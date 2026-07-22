@@ -134,7 +134,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toUpperCase();
 
                     // --- Remapping Logic ---
-                    const coverImg = p.link_url || p.image_url;
+                    let coverImg = p.link_url || p.image_url;
+                    if (p.title && (p.title.toLowerCase().includes('executive') || p.title.toLowerCase().includes('boardroom'))) {
+                        coverImg = 'images/executive-insight-new.jpg';
+                    }
                     let author = p.author_name || 'RIGO WEAR';
                     let displayExcerpt = p.excerpt || '';
 

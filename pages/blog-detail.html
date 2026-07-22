@@ -94,7 +94,10 @@
                 if (error || !blog) throw error;
 
                 // --- Remapping Logic ---
-                const coverImg = blog.link_url || blog.image_url;
+                let coverImg = blog.link_url || blog.image_url;
+                if (blog.title && (blog.title.toLowerCase().includes('executive') || blog.title.toLowerCase().includes('boardroom'))) {
+                    coverImg = '../images/executive-insight-new.jpg';
+                }
                 let author = blog.author_name || 'RIGO WEAR';
                 let displayExcerpt = blog.excerpt || '';
                 
