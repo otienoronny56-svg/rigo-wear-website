@@ -130,7 +130,7 @@ a:hover {
     min-height: 90vh;
     display: flex;
     align-items: center;
-    padding-top: 80px;
+    padding-top: 120px; /* Increased to fully clear the fixed header */
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 215, 0, 0.15);
