@@ -125,10 +125,10 @@ a:hover {
 /* --- 2. Hero Section Styling (Luxury Modern Left-Aligned View) --- */
 #hero {
     background: radial-gradient(circle at 15% 50%, rgba(255, 215, 0, 0.07) 0%, rgba(10, 10, 10, 1) 65%), #080808;
-    min-height: calc(100vh - 90px);
+    min-height: auto;
     display: flex;
-    align-items: center;
-    padding: 40px 0;
+    align-items: flex-start;
+    padding: 25px 0 40px 0;
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 215, 0, 0.15);
@@ -148,12 +148,12 @@ a:hover {
 
 .hero-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 4%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
     position: relative;
     z-index: 2;
@@ -212,8 +212,8 @@ a:hover {
 
 /* Hero Showcase Frame (Right Side) */
 .hero-showcase {
-    flex: 1;
-    max-width: 480px;
+    flex: 1.2;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
