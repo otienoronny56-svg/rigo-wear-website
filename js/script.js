@@ -138,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (p.title && (p.title.toLowerCase().includes('executive') || p.title.toLowerCase().includes('boardroom'))) {
                         coverImg = 'images/executive-insight-new.jpg';
                     }
+                    if (p.title && (p.title.toLowerCase().includes('ritual') || p.title.toLowerCase().includes('signature'))) {
+                        coverImg = 'images/WhatsApp Image 2026-07-22 at 15.54.53.jpeg';
+                    }
                     let author = p.author_name || 'RIGO WEAR';
                     let displayExcerpt = p.excerpt || '';
 
