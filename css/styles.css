@@ -574,9 +574,8 @@ a:hover {
 
 /* --- 4. Bespoke Process/Callout Styling --- */
 #bespoke-callout {
-    background-color: #1a1a1a;
-    /* Dark gray for a slight contrast from pure black */
-    padding: 100px 5%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, rgba(10, 10, 10, 1) 85%), #080808;
+    padding: 90px 5%;
     text-align: center;
     border-top: 1px solid rgba(255, 215, 0, 0.2);
     border-bottom: 1px solid rgba(255, 215, 0, 0.2);
@@ -594,27 +593,26 @@ a:hover {
     margin: 0 auto 40px auto;
 }
 
-/* Secondary Button Styling (for "Learn More") */
+/* Secondary Button Styling (for "Learn More") - Luxury Gold Outline */
 .secondary-button {
     display: inline-block;
-    padding: 10px 25px;
-    background-color: var(--color-royal-blue);
-    /* Royal Blue accent */
-    color: var(--color-accent);
+    padding: 12px 30px;
+    background-color: transparent;
+    color: var(--color-secondary);
     text-transform: uppercase;
-    font-weight: bold;
-    border: 2px solid var(--color-royal-blue);
-    border-radius: 5px;
-    letter-spacing: 1px;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--color-secondary);
+    border-radius: 4px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
 }
 
 .secondary-button:hover {
-    background-color: var(--color-accent);
-    /* White background on hover */
-    color: var(--color-primary);
-    /* Black text on hover */
-    border-color: var(--color-accent);
+    background-color: var(--color-secondary);
+    color: #000000;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 /* --- 5. Testimonial Section & Marquee Animation --- */
@@ -2499,6 +2497,31 @@ a:hover {
         grid-template-columns: repeat(2, 1fr);
         /* Guaranteed 2 items per row on mobile */
         gap: 10px;
+    }
+
+    #bespoke-callout {
+        padding: 50px 5%;
+    }
+
+    #bespoke-callout h2 {
+        font-size: 1.8rem;
+    }
+
+    #bespoke-callout p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .testimonial-card {
+        width: 285px; /* Compact width for mobile screens */
+        padding: 20px;
+        margin: 0 8px;
+    }
+
+    .testimonial-card p {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
     }
 }
 
