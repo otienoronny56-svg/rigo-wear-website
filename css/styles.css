@@ -2494,9 +2494,10 @@ a:hover {
 
 /* Mobile Adjustments (Phones) */
 @media (max-width: 768px) {
-    #product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        /* 2 items per row */
+    #product-grid,
+    .grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        /* Guaranteed 2 items per row on mobile */
         gap: 10px;
     }
 }
