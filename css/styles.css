@@ -2542,18 +2542,43 @@ a:hover {
     }
 
     #shop-hero {
-        padding: 15px 5% 5px 5%;
+        padding: 10px 5% 0 5%;
     }
 
     #shop-hero h1 {
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
         margin: 0;
     }
 
-    .filter-actions {
-        margin-top: 10px;
-        margin-bottom: 15px;
+    #product-listing {
+        padding: 5px 5% 40px 5%;
     }
+
+    .filter-actions {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+}
+
+/* Global Shop Hero & Compact Layout */
+#shop-hero {
+    padding: 20px 5% 5px 5%;
+    text-align: center;
+}
+
+#shop-hero h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+#product-listing {
+    padding: 10px 5% 60px 5%;
+}
+
+.shop-layout {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* Search Bar Styling */
