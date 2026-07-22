@@ -2541,44 +2541,56 @@ a:hover {
         margin-bottom: 15px;
     }
 
-    #shop-hero {
-        padding: 10px 5% 0 5%;
-    }
-
-    #shop-hero h1 {
-        font-size: 1.4rem !important;
-        margin: 0;
-    }
-
-    #product-listing {
-        padding: 5px 5% 40px 5%;
-    }
-
-    .filter-actions {
-        margin-top: 5px;
-        margin-bottom: 10px;
-    }
-}
-
 /* Global Shop Hero & Compact Layout */
 #shop-hero {
-    padding: 20px 5% 5px 5%;
+    padding: 10px 5% 0 5% !important;
+    margin: 0 !important;
     text-align: center;
 }
 
 #shop-hero h1 {
-    font-size: 2.2rem;
-    margin: 0;
-    line-height: 1.2;
+    font-size: 2.2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.1 !important;
 }
 
 #product-listing {
-    padding: 10px 5% 60px 5%;
+    padding: 5px 5% 60px 5% !important;
+    margin: 0 !important;
 }
 
 .shop-layout {
-    margin-top: 0;
-    padding-top: 0;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.filter-actions {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+@media (max-width: 768px) {
+    #shop-hero {
+        padding: 5px 5% 0 5% !important;
+        margin: 0 !important;
+    }
+
+    #shop-hero h1 {
+        font-size: 1.25rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #product-listing {
+        padding: 0 5% 30px 5% !important;
+        margin: 0 !important;
+    }
+
+    .filter-actions {
+        margin-top: 2px !important;
+        margin-bottom: 8px !important;
+    }
 }
 
 /* Search Bar Styling */
