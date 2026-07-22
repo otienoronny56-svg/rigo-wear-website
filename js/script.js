@@ -104,17 +104,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return `
                     <div class="product-card">
-                        <div style="position: relative;">
-                            <div class="badge" style="position:absolute; background:#FFD700; color:#000; padding:5px 10px; font-weight:bold; z-index: 2;">Signature</div>
-                            ${hasOffer ? `<div style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 8px 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; text-align: center; z-index: 3;">-${discountPercent}%</div>` : ''}
+                        <div class="product-image-wrapper">
+                            <div class="badge badge-signature">Signature</div>
+                            ${hasOffer ? `<div class="badge badge-discount">-${discountPercent}%</div>` : ''}
                             <img src="${s.image_url}" alt="${s.name}">
                         </div>
-                        <h3>${s.name}</h3>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <p class="price">KES ${Math.round(displayPrice).toLocaleString()}</p>
-                            ${hasOffer ? `<p style="text-decoration: line-through; color: #999; font-size: 0.9rem;">KES ${Math.round(s.original_price).toLocaleString()}</p>` : ''}
+                        <div class="product-info">
+                            <h3>${s.name}</h3>
+                            <div class="price-wrapper">
+                                <p class="price">KES ${Math.round(displayPrice).toLocaleString()}</p>
+                                ${hasOffer ? `<p class="price-original">KES ${Math.round(s.original_price).toLocaleString()}</p>` : ''}
+                            </div>
+                            <a href="pages/product-detail.html?id=${s.id}" class="quick-view-btn">View Masterpiece</a>
                         </div>
-                        <a href="pages/product-detail.html?id=${s.id}" class="quick-view-btn">View Masterpiece</a>
                     </div>
                 `;
                 }).join('');
@@ -275,18 +277,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             return `
                 <div class="product-card">
-                    <div style="position: relative;">
+                    <div class="product-image-wrapper">
                         <img src="${p.image_url}" alt="${p.name}">
-                        ${hasOffer ? `<div style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 8px 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; text-align: center;">-${discountPercent}%</div>` : ''}
+                        ${hasOffer ? `<div class="badge badge-discount">-${discountPercent}%</div>` : ''}
                         ${tier ? `<div class="tier-badge ${tier.class}">${tier.name}</div>` : ''}
                     </div>
-                    <div class="card-content">
-                        <small style="color:var(--color-secondary)">${p.category}</small>
+                    <div class="product-info">
+                        <small style="color:var(--color-secondary); margin-bottom: 8px;">${p.category}</small>
                         <h3>${p.name}</h3>
                         <p class="brief-desc">${briefDesc}</p>
-                        <div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="price-wrapper">
                             <p class="price">KES ${Math.round(displayPrice).toLocaleString()}</p>
-                            ${hasOffer ? `<p style="text-decoration: line-through; color: #999; font-size: 0.9rem;">KES ${Math.round(p.original_price).toLocaleString()}</p>` : ''}
+                            ${hasOffer ? `<p class="price-original">KES ${Math.round(p.original_price).toLocaleString()}</p>` : ''}
                         </div>
                         <a href="product-detail.html?id=${p.id}" class="quick-view-btn">View Details</a>
                     </div>
@@ -449,18 +451,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     return `
                     <div class="product-card">
-                        <div class="product-image" style="position: relative;">
+                        <div class="product-image-wrapper">
                             <img src="${p.image_url}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/250x350?text=RIGO'">
-                            ${hasOffer ? `<div style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 8px 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; text-align: center;">-${discountPercent}%</div>` : ''}
+                            ${hasOffer ? `<div class="badge badge-discount">-${discountPercent}%</div>` : ''}
                             ${tier ? `<div class="tier-badge ${tier.class}">${tier.name}</div>` : ''}
                         </div>
-                        <h3>${p.name}</h3>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <p class="price">KES ${Math.round(displayPrice).toLocaleString()}</p>
-                            ${hasOffer ? `<p style="text-decoration: line-through; color: #999; font-size: 0.9rem;">KES ${Math.round(p.original_price).toLocaleString()}</p>` : ''}
+                        <div class="product-info">
+                            <small style="color:var(--color-secondary); margin-bottom: 8px;">${p.category}</small>
+                            <h3>${p.name}</h3>
+                            <div class="price-wrapper">
+                                <p class="price">KES ${Math.round(displayPrice).toLocaleString()}</p>
+                                ${hasOffer ? `<p class="price-original">KES ${Math.round(p.original_price).toLocaleString()}</p>` : ''}
+                            </div>
+                            <a href="product-detail.html?id=${p.id}" class="quick-view-btn">View Details</a>
                         </div>
-                        <p class="category">${p.category}</p>
-                        <a href="product-detail.html?id=${p.id}" class="quick-view-btn">View Details</a>
                     </div>
                 `;
                 }).join('');

@@ -124,72 +124,291 @@ a:hover {
 }
 
 
-/* --- 2. Hero Section Styling (The initial luxurious full-screen view) --- */
+/* --- 2. Hero Section Styling (Luxury Modern Left-Aligned View) --- */
 #hero {
-    background-image: url('../images/hero-reception.png');
-    /* New reception background */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
+    background: radial-gradient(circle at 15% 50%, rgba(255, 215, 0, 0.07) 0%, rgba(10, 10, 10, 1) 65%), #080808;
+    min-height: 90vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding-top: 60px;
+    padding-top: 80px;
     position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
 }
 
+/* Background Luxury Geometry Accent */
 #hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.85) 100%);
-    z-index: 1;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.hero-content {
+.hero-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
     position: relative;
     z-index: 2;
 }
 
-#hero h1 {
-    font-size: 3.5em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+.hero-content {
+    flex: 1.2;
+    max-width: 650px;
+    text-align: left;
+    padding: 30px 0 30px 25px; /* Increased vertical padding to extend the border gracefully */
+    position: relative;
+    border-left: 3px solid var(--color-secondary);
+}
+
+.hero-eyebrow {
+    display: block;
     color: var(--color-secondary);
+    font-size: 0.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 25px; /* Increased spacing */
+}
+
+#hero h1 {
+    font-size: 2.5rem; /* Slightly larger for better balance, still keeping it elegant */
+    line-height: 1.3;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px; /* Increased spacing */
+    text-shadow: none;
+}
+
+#hero .highlight-gold {
+    color: var(--color-secondary);
+    font-weight: 700;
 }
 
 #hero p {
-    font-size: 1.5em;
-    color: var(--color-accent);
-    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #D1D5DB;
+    margin-bottom: 45px; /* Increased spacing to push buttons down and fill space */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Hero Showcase Frame (Right Side) */
+.hero-showcase {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.showcase-frame {
+    position: relative;
+    width: 100%;
+    max-width: 480px; /* Slightly wider to accommodate fade */
+    height: 550px;
+    background: transparent;
+    transition: transform 0.4s ease;
+}
+
+.showcase-frame:hover {
+    transform: translateY(-5px);
+}
+
+.showcase-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.95) contrast(1.05);
+    transition: transform 0.6s ease;
+    /* Mask the image edges so it blends seamlessly into the dark background */
+    -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+
+.showcase-frame:hover img {
+    transform: scale(1.04);
+}
+
+.showcase-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(12, 12, 12, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    z-index: 3;
+}
+
+.showcase-badge i {
+    color: var(--color-secondary);
+    font-size: 1.3rem;
+}
+
+.showcase-badge strong {
+    display: block;
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.showcase-badge span {
+    display: block;
+    color: var(--color-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.top-badge {
+    top: 25px;
+    right: -50px; /* Pushed to the right to avoid blocking the Rigo Wear sign */
+    animation: floatBadge 4s ease-in-out infinite alternate;
+}
+
+.bottom-badge {
+    bottom: 35px;
+    left: -20px; /* Pushed slightly out for a matching 3D floating effect */
+    animation: floatBadge 4s ease-in-out 2s infinite alternate;
+}
+
+@keyframes floatBadge {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-6px); }
 }
 
 /* Call to Action Button Styling (Gold and prominent) */
 .cta-button {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 12px 28px;
     background-color: var(--color-secondary);
-    /* Gold background */
     color: var(--color-primary);
-    /* Black text on gold */
     text-transform: uppercase;
     font-weight: bold;
     border: 2px solid var(--color-secondary);
-    border-radius: 5px;
-    letter-spacing: 1px;
-    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    letter-spacing: 1.2px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
 }
 
 .cta-button:hover {
     background-color: transparent;
     color: var(--color-secondary);
-    /* Gold border, gold text on hover */
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.cta-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 4px;
+    letter-spacing: 1.2px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.cta-secondary:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    background-color: rgba(255, 215, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Hero Mobile Responsiveness */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-showcase {
+        max-width: 100%;
+    }
+
+    .showcase-frame {
+        max-width: 100%;
+        height: 420px;
+    }
+}
+
+@media (max-width: 768px) {
+    #hero {
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .hero-content {
+        padding-left: 20px;
+        border-left: 2px solid var(--color-secondary);
+    }
+
+    #hero h1 {
+        font-size: 2.1rem;
+    }
+
+    #hero p {
+        font-size: 1.05rem;
+    }
+
+    .cta-button, .cta-secondary {
+        padding: 12px 24px;
+        font-size: 0.82rem;
+    }
+
+    .showcase-frame {
+        height: 350px;
+    }
+
+    .showcase-badge {
+        padding: 10px 14px;
+    }
+
+    .showcase-badge strong {
+        font-size: 0.78rem;
+    }
+
+    .showcase-badge span {
+        font-size: 0.7rem;
+    }
 }
 
 /* --- 3. Featured Products/Collections Styling --- */
@@ -220,67 +439,134 @@ a:hover {
 /* Grid Layout for Products (3 columns on desktop) */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Responsive grid */
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 240px)); /* Forces max column width of 240px */
+    justify-content: center; /* Centers the grid if there's leftover space */
+    gap: 20px;
 }
 
 /* Styling for an individual Product Card (We'll add the HTML content soon) */
 .product-card {
-    background-color: #0d0d0d;
-    border: 1px solid #1a1a1a;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: none;
+    transition: opacity 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-secondary);
+    opacity: 0.9;
+}
+
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Forces all cards to be perfectly equal in height */
+    background-color: #080808; /* Subtle frame background for letterboxing */
+    border-radius: 8px; /* Soft edges for images only */
+    overflow: hidden;
 }
 
 .product-card img {
     width: 100%;
+    height: 100%;
     display: block;
-    margin-bottom: 15px;
+    object-fit: contain; /* Fits full image inside the box without any truncation */
+    transition: transform 0.8s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.03);
+}
+
+/* Badges - Fashion Nova Style */
+.badge-signature {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8b0000; /* Dark Red */
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.badge-discount {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    z-index: 3;
+}
+
+/* Product Info */
+.product-info {
+    padding: 12px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    flex-grow: 1;
 }
 
 .product-card h3 {
-    font-size: 1.4em;
-    color: var(--color-accent);
-    /* Product title in white */
+    font-size: 0.95rem;
+    color: #f0f0f0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
     margin-bottom: 5px;
 }
 
 .product-card p.price {
-    font-size: 1.2em;
-    color: var(--color-secondary);
-    /* Price in Gold */
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 600;
 }
 
+.product-card p.price-original {
+    text-decoration: line-through;
+    color: #777;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+/* Invisible overlay to make the whole card clickable like Fashion Nova */
 .product-card .quick-view-btn {
-    /* Basic button styling for quick view */
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px;
-    background-color: var(--color-royal-blue);
-    /* Using Royal Blue accent */
-    color: var(--color-accent);
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.product-card .quick-view-btn:hover {
-    background-color: var(--color-secondary);
-    /* Gold on hover */
-    color: var(--color-primary);
 }
 
 /* --- 4. Bespoke Process/Callout Styling --- */
@@ -2192,15 +2478,7 @@ a:hover {
     flex-grow: 1;
 }
 
-/* Fix for large/inconsistent images */
-.product-card img {
-    width: 100%;
-    height: 280px;
-    /* Fixed height for desktop */
-    object-fit: cover;
-    /* Crops image perfectly to fit the box */
-    border-bottom: 1px solid #1a1a1a;
-}
+/* Removed conflicting fixed height on product images */
 
 .product-card .card-content {
     padding: 15px;
